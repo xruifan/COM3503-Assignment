@@ -10,6 +10,7 @@ import com.jogamp.opengl.util.glsl.*;
 public class RobotRoot {
 
     private Model orb;
+    private double startTime = getSeconds();
 
     public RobotRoot(Model orb){
         this.orb = orb;
@@ -109,6 +110,7 @@ public class RobotRoot {
         setupTree();
         robotRoot.update();
         robotPose1();
+        System.out.print(startTime);
         return robotRoot;
     }
 
@@ -116,5 +118,9 @@ public class RobotRoot {
         robotTranslate.setTransform(Mat4Transform.translate(0,0,0));
         robotRoot.update();
     }
+
+    private double getSeconds() {
+    return System.currentTimeMillis()/1000.0;
+  }
 
 }

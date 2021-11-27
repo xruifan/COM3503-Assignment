@@ -8,6 +8,8 @@ import com.jogamp.opengl.util.awt.*;
 import com.jogamp.opengl.util.glsl.*;
 
 public class SpotlightRoot {
+
+    private static double startTime = getSeconds();
     
     private Model metal;
     private Model lightBulb;
@@ -80,10 +82,16 @@ public class SpotlightRoot {
         return spotlightRoot;
     }
 
-    public static void updateShadeRotation(float rotateAngle){
+    public static void updateShadeRotation(){
+        double elapsedTime = getSeconds()-startTime;
+        float rotateAngle = 180f+45f*(float)Math.sin(elapsedTime);
         shadeRotateTransform.setTransform(Mat4Transform.rotateAroundX(rotateAngle));
         spotlightRoot.update();
     }
+
+    private static double getSeconds() {
+    return System.currentTimeMillis()/1000.0;
+  }
 
 
     // The light's postion is continually being changed, so needs to be calculated for each frame.

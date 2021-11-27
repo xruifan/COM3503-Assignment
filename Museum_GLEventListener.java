@@ -209,7 +209,7 @@ public class Museum_GLEventListener implements GLEventListener {
     skyRender(gl);
     eggRoot.draw(gl);
     phoneRoot.draw(gl);
-    updateShade();
+    SpotlightRoot.updateShadeRotation();
     spotlightRoot.draw(gl);
     robotRoot.draw(gl);
   }
@@ -225,12 +225,6 @@ public class Museum_GLEventListener implements GLEventListener {
     }
   }
 
-
-  private void updateShade() {
-    double elapsedTime = getSeconds()-startTime;
-    float rotateAngle = 180f+45f*(float)Math.sin(elapsedTime);
-    SpotlightRoot.updateShadeRotation(rotateAngle);
-  }
    
   // ***************************************************
   /* TIME
