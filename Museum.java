@@ -44,16 +44,19 @@ public class Museum extends JFrame implements ActionListener {
     menuBar.add(fileMenu);
     
     JPanel p = new JPanel();
-      JButton b = new JButton("camera X");
+      JButton b = new JButton("Pose 1");
       b.addActionListener(this);
       p.add(b);
-      b = new JButton("camera Z");
+      b = new JButton("Pose 2");
       b.addActionListener(this);
       p.add(b);
-      b = new JButton("increase X position");
+      b = new JButton("Pose 3");
       b.addActionListener(this);
       p.add(b);
-      b = new JButton("decrease X position");
+      b = new JButton("Pose 4");
+      b.addActionListener(this);
+      p.add(b);
+      b = new JButton("Pose 5");
       b.addActionListener(this);
       p.add(b);
     this.add(p, BorderLayout.SOUTH);
@@ -71,19 +74,20 @@ public class Museum extends JFrame implements ActionListener {
   }
   
   public void actionPerformed(ActionEvent e) {
-    if (e.getActionCommand().equalsIgnoreCase("camera X")) {
-      camera.setCamera(Camera.CameraType.X);
-      canvas.requestFocusInWindow();
+    if (e.getActionCommand().equalsIgnoreCase("Pose 1")) {
+      glEventListener.robotPose1();
     }
-    else if (e.getActionCommand().equalsIgnoreCase("camera Z")) {
-      camera.setCamera(Camera.CameraType.Z);
-      canvas.requestFocusInWindow();
+    else if (e.getActionCommand().equalsIgnoreCase("Pose 2")) {
+      glEventListener.robotPose2();
     }
-    else if (e.getActionCommand().equalsIgnoreCase("increase X position")) {
-      glEventListener.incXPosition();
+    else if (e.getActionCommand().equalsIgnoreCase("Pose 3")) {
+      glEventListener.robotPose3();
     }
-    else if (e.getActionCommand().equalsIgnoreCase("decrease X position")) {
-      glEventListener.decXPosition();
+    else if (e.getActionCommand().equalsIgnoreCase("Pose 4")) {
+      glEventListener.robotPose4();
+    }
+    else if (e.getActionCommand().equalsIgnoreCase("Pose 5")) {
+      glEventListener.robotPose5();
     }
     else if(e.getActionCommand().equalsIgnoreCase("quit"))
       System.exit(0);

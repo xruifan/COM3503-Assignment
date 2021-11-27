@@ -74,7 +74,6 @@ public class SpotlightRoot {
                 lightTransform.addChild(lightShape);
     }
 
-
     public SGNode getSpotlightRoot(){
         setupTree();
         spotlightRoot.update();
@@ -85,4 +84,14 @@ public class SpotlightRoot {
         shadeRotateTransform.setTransform(Mat4Transform.rotateAroundX(rotateAngle));
         spotlightRoot.update();
     }
+
+
+    // The light's postion is continually being changed, so needs to be calculated for each frame.
+    private Vec3 getLightPosition() {
+        float x = 0;
+        float y = 0;
+        float z = 0;
+        return new Vec3(x,y,z);   
+    }
+
 }

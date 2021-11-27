@@ -16,9 +16,10 @@ public class RobotRoot {
     }
 
     private SGNode robotRoot = new NameNode("root");
+    TransformNode robotTranslate;
 
     private void setupTree(){
-        TransformNode robotTranslate = new TransformNode("robot transform",Mat4Transform.translate(3,0,3));
+        robotTranslate = new TransformNode("robot transform",Mat4Transform.translate(-4,0,-5));
 
         NameNode body = new NameNode("body");
         Mat4 m = Mat4Transform.scale(0.5f,1.4f,0.5f);
@@ -107,7 +108,13 @@ public class RobotRoot {
     public SGNode getRobotRoot(){
         setupTree();
         robotRoot.update();
+        robotPose1();
         return robotRoot;
+    }
+
+    public void robotPose1(){
+        robotTranslate.setTransform(Mat4Transform.translate(0,0,0));
+        robotRoot.update();
     }
 
 }

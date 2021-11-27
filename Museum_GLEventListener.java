@@ -76,23 +76,25 @@ public class Museum_GLEventListener implements GLEventListener {
    *
    *
    */
-   
-   public void incXPosition() {
-     xPosition += 0.5f;
-     if (xPosition>5f) xPosition = 5f;
-     updateX();
-   }
-   
-   public void decXPosition() {
-     xPosition -= 0.5f;
-     if (xPosition<-5f) xPosition = -5f;
-     updateX();
-   }
-   
-   private void updateX() {
-     translateX.setTransform(Mat4Transform.translate(xPosition,0,0));
-     translateX.update(); // IMPORTANT  the scene graph has changed
-   }
+  public void robotPose1(){
+    
+  }
+
+  public void robotPose2(){
+    
+  }
+
+  public void robotPose3(){
+    
+  }
+
+  public void robotPose4(){
+    
+  }
+
+  public void robotPose5(){
+    
+  }
    
    
   // ***************************************************
@@ -108,13 +110,10 @@ public class Museum_GLEventListener implements GLEventListener {
   private List<Model> doorWall = new ArrayList<>();
   private Light light;
   private SGNode phoneRoot, eggRoot, spotlightRoot, robotRoot;
-  private TransformNode translateX, rotateAll, rotateUpper;
-  private float xPosition = 0;
-  private float rotateAllAngleStart = 25, rotateAllAngle = rotateAllAngleStart;
-  private float rotateUpperAngleStart = -60, rotateUpperAngle = rotateUpperAngleStart;
+
   
   private void initialise(GL3 gl) {
-    createRandomNumbers();
+    // createRandomNumbers();
     int[] textureFloor = TextureLibrary.loadTexture(gl, "textures/floor.jpg");
     int[] textureFloorSpecular = TextureLibrary.loadTexture(gl, "textures/floor_specular.jpg");
     int[] textureWall = TextureLibrary.loadTexture(gl, "textures/wall.jpg");
@@ -128,11 +127,12 @@ public class Museum_GLEventListener implements GLEventListener {
     int[] texturePhoneScreen = TextureLibrary.loadTexture(gl, "textures/phone_screen.jpg");
     
     light = new Light(gl);
+    light.setPosition(new Vec3(0,5,0));  // changing light position each frame
     light.setCamera(camera);
     
     // floor
     Mesh mesh = new Mesh(gl, TwoTriangles.vertices.clone(), TwoTriangles.indices.clone());
-    Shader shader = new Shader(gl, "vs_tt_05.txt", "fs_tt_05.txt");
+    Shader shader = new Shader(gl, "vs_tt_05.txt", "fs.txt");
 
     floor = new Floor(gl, camera, light, shader, mesh, textureFloor, textureFloorSpecular).getFloor();
 
@@ -148,19 +148,19 @@ public class Museum_GLEventListener implements GLEventListener {
 
     // plinth
     mesh = new Mesh(gl, Cube.vertices.clone(), Cube.indices.clone());
-    shader = new Shader(gl, "vs_cube_04.txt", "fs_cube_04.txt");
+    shader = new Shader(gl, "vs_cube_04.txt", "fs.txt");
 
     plinth = new Plinth(gl, camera, light, shader, mesh, texturePlinth, texturePlinthSpecular).getPlinth();
 
     // orb
     mesh = new Mesh(gl, Sphere.vertices.clone(), Sphere.indices.clone());
-    shader = new Shader(gl, "vs_sphere_04.txt", "fs_sphere_04.txt");
+    shader = new Shader(gl, "vs_sphere_04.txt", "fs.txt");
 
     orb = new Orb(gl, camera, light, shader, mesh, textureEgg, textureEggSpecular).getOrb();
 
     // lightBulb
     mesh = new Mesh(gl, Sphere.vertices.clone(), Sphere.indices.clone());
-    shader = new Shader(gl, "vs_light_01.txt", "fs_light_01.txt");
+    shader = new Shader(gl, "vs_light_01.txt", "fs_light.txt");
 
     lightBulb = new LightBulb(gl, camera, light, shader, mesh).getLightBulb();
 
@@ -177,7 +177,7 @@ public class Museum_GLEventListener implements GLEventListener {
 
     // phone case (metal)
     mesh = new Mesh(gl, Cube.vertices.clone(), Cube.indices.clone());
-    shader = new Shader(gl, "vs_cube_04.txt", "fs_cube_04.txt");
+    shader = new Shader(gl, "vs_cube_04.txt", "fs.txt");
 
     metal = new Metal(gl, camera, light, shader, mesh, textureMetal).getMetal();
 
@@ -197,7 +197,7 @@ public class Museum_GLEventListener implements GLEventListener {
  
   private void render(GL3 gl) {
     gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
-    light.setPosition(getLightPosition());  // changing light position each frame
+    
     light.render(gl);
     floor.render(gl);
     for (Model wallPiece : windowWall){
@@ -214,16 +214,6 @@ public class Museum_GLEventListener implements GLEventListener {
     robotRoot.draw(gl);
   }
 
-  /*
-  private void updateBranches() {
-    double elapsedTime = getSeconds()-startTime;
-    rotateAllAngle = rotateAllAngleStart*(float)Math.sin(elapsedTime);
-    rotateUpperAngle = rotateUpperAngleStart*(float)Math.sin(elapsedTime*0.7f);
-    rotateAll.setTransform(Mat4Transform.rotateAroundZ(rotateAllAngle));
-    rotateUpper.setTransform(Mat4Transform.rotateAroundZ(rotateUpperAngle));
-    twoBranchRoot.update(); // IMPORTANT  the scene graph has changed
-  }
-  */
 
   // The scene's texture changes by time 
   private void skyRender(GL3 gl){
@@ -235,14 +225,6 @@ public class Museum_GLEventListener implements GLEventListener {
     }
   }
 
-  // The light's postion is continually being changed, so needs to be calculated for each frame.
-  private Vec3 getLightPosition() {
-    double elapsedTime = getSeconds()-startTime;
-    float x = 5.0f*(float)(Math.sin(Math.toRadians(elapsedTime*50)));
-    float y = 2.7f;
-    float z = 5.0f*(float)(Math.cos(Math.toRadians(elapsedTime*50)));
-    return new Vec3(x,y,z);   
-  }
 
   private void updateShade() {
     double elapsedTime = getSeconds()-startTime;
@@ -262,7 +244,7 @@ public class Museum_GLEventListener implements GLEventListener {
 
   // ***************************************************
   /* An array of random numbers
-   */ 
+   
   
   private int NUM_RANDOMS = 1000;
   private float[] randoms;
@@ -273,5 +255,5 @@ public class Museum_GLEventListener implements GLEventListener {
       randoms[i] = (float)Math.random();
     }
   }
-  
+  */ 
 }
