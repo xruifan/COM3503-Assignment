@@ -71,6 +71,15 @@ public class Mat4 {   // row column formulation
     return result;
   }
 
+  public static Vec4 multiply(Mat4 a, Vec4 b) {
+    Float[] vec = new Float[4];
+    for (int i=0; i<4; ++i) {
+      vec[i] = a.values[i][0]*b.x + a.values[i][1]*b.y + a.values[i][2]*b.z + a.values[i][3]*b.w;
+    }
+
+    return new Vec4(vec[0],vec[1],vec[2],vec[3]);
+  }
+
   // See https://www.geometrictools.com/Documentation/LaplaceExpansionTheorem.pdf
   public static Mat4 inverse(Mat4 m) {
     float s0 = m.values[0][0] * m.values[1][1] - m.values[1][0] * m.values[0][1];

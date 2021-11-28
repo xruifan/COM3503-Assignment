@@ -16,96 +16,142 @@ public class RobotRoot {
     }
 
     private static SGNode robotRoot = new NameNode("root");
-    private static TransformNode robotTranslate, robotRotateTranslate, bodyTransform;
+    private static TransformNode moveTranslate, letRotate, neckRotate, leftEarRotate, rightEarRotate, noseRotate;
 
+    private float bodyHeight = 1.5f;
+    private float bodyWidth = 0.2f;
+    private float bodyDepth = 0.2f;
+    private float headScale = 0.5f;
+    private float neckScale = 0.2f;
+    private float neckLength = 0.5f;
+    private float legLength = 0.4f;
+    private float legScale = 0.25f;
+    private float earLength = 0.6f;
+    private float earScale = 0.08f;
+    private float noseScale = 0.1f;
 
     private void setupTree(){
-        robotTranslate = new TransformNode("robot transform",Mat4Transform.translate(-2,0,-7));
-        robotRotateTranslate = new TransformNode("robot rotate transform",Mat4Transform.rotateAroundX(0));
+    moveTranslate = new TransformNode("robot transform",Mat4Transform.translate(0,0,0));
+    TransformNode robotTranslate = new TransformNode("robot transform",Mat4Transform.translate(0f,0f,0f));
+    TransformNode backToOrigin = new TransformNode("back to origin", Mat4Transform.translate(0,-(bodyHeight+neckScale),0));
+    TransformNode backToHead = new TransformNode("back to head", Mat4Transform.translate(0,(bodyHeight+neckScale),0));
+    TransformNode toLeftEarPos = new TransformNode("Move to left ear pos", Mat4Transform.translate(-0.1f,bodyHeight+((neckScale+headScale)/2),0));
+    TransformNode toRightEarPos = new TransformNode("Move to right ear pos", Mat4Transform.translate(0.1f,bodyHeight+((neckScale+headScale)/2),0));
+    TransformNode toNosePos = new TransformNode("Move to nose pos", Mat4Transform.translate(0,bodyHeight+((neckScale+(headScale))/2),0.25f));
 
-        NameNode body = new NameNode("body");
-        Mat4 m = Mat4Transform.scale(0.7f,1.96f,0.7f);
-        m = Mat4.multiply(m, Mat4Transform.translate(0,0.85f,0));
-        bodyTransform = new TransformNode("body transform", m);
-            ModelNode bodyShape = new ModelNode("Sphere(body)", orb);
+    Mat4 x = new Mat4(1);
+      x = new Mat4(1);
+      x = Mat4.multiply(x, Mat4Transform.rotateAroundX(0));
+      x = Mat4.multiply(x, Mat4Transform.rotateAroundZ(0));
+      x = Mat4.multiply(x, Mat4Transform.rotateAroundY(0));
+      letRotate = new TransformNode("With leg rotation", x);
 
-        NameNode neck = new NameNode("neck");
-        m = Mat4Transform.scale(0.21f,0.21f,0.21f);
-        m = Mat4.multiply(m, Mat4Transform.translate(0,13.0f,0));
-        TransformNode neckTransform = new TransformNode("neck transform", m);
-            ModelNode neckShape = new ModelNode("Sphere(neck)", orb);
+    Mat4 y = new Mat4(1);
+      y = Mat4.multiply(y, Mat4Transform.rotateAroundX(0));
+      y = Mat4.multiply(y, Mat4Transform.rotateAroundZ(0));
+      y = Mat4.multiply(y, Mat4Transform.rotateAroundY(0));
+      neckRotate = new TransformNode("With neck rotation", y);
 
-        NameNode head = new NameNode("head");
-        m = Mat4Transform.scale(1.82f,0.7f,0.7f);
-        m = Mat4.multiply(m, Mat4Transform.translate(0,4.5f,0));
-        TransformNode headTransform = new TransformNode("head transform", m);
-            ModelNode headShape = new ModelNode("Sphere(head)", orb);
+    Mat4 z = new Mat4(1);
+    z = Mat4.multiply(z, Mat4Transform.rotateAroundX(0));
+    z = Mat4.multiply(z, Mat4Transform.rotateAroundZ(0));
+    leftEarRotate = new TransformNode("Left ear rotation", z);
 
-        NameNode foot = new NameNode("foot");
-        m = Mat4Transform.scale(0.7f,0.7f,0.7f);
-        m = Mat4.multiply(m, Mat4Transform.translate(0,0.5f,0));
-        TransformNode footTransform = new TransformNode("foot transform", m);
-            ModelNode footShape = new ModelNode("Sphere(foot)", orb);
+    Mat4 a = new Mat4(1);
+    a = Mat4.multiply(a, Mat4Transform.rotateAroundX(0));
+    a = Mat4.multiply(a, Mat4Transform.rotateAroundZ(0));
+    rightEarRotate = new TransformNode("Right ear rotation", a);
 
-        NameNode ear0 = new NameNode("ear0");
-        m = Mat4Transform.scale(0.14f,0.7f,0.14f);
-        m = Mat4.multiply(m, Mat4Transform.translate(0,5.5f,0));
-        TransformNode ear0Transform = new TransformNode("ear0 transform", m);
-            ModelNode ear0Shape = new ModelNode("Sphere(ear0)", orb);
+    Mat4 b = new Mat4(1);
+    b = Mat4.multiply(b, Mat4Transform.scale(noseScale,noseScale,noseScale*0.1f));
+    noseRotate = new TransformNode("Nose Scale", b);
+    
+    NameNode body = new NameNode("body");
+      Mat4 m = new Mat4(1);
+      m = Mat4.multiply(m, Mat4Transform.translate(0,bodyHeight+legScale,0));
+      m = Mat4Transform.scale(bodyWidth,bodyHeight,bodyDepth);
+      m = Mat4.multiply(m, Mat4Transform.translate(0,0.5f,0));
+      TransformNode bodyTransform = new TransformNode("body transform", m);
+        ModelNode bodyShape = new ModelNode("Sphere(body)", orb);
 
-        NameNode ear1 = new NameNode("ear1");
-        m = Mat4Transform.scale(0.14f,0.98f,0.14f);
-        m = Mat4.multiply(m, Mat4Transform.translate(5.5f,3.2f,0.0f));
-        TransformNode ear1Transform = new TransformNode("ear1 transform", m);
-            ModelNode ear1Shape = new ModelNode("Sphere(ear1)", orb);
+    NameNode head = new NameNode("head"); 
+      m = new Mat4(1);
+      m = Mat4.multiply(m, Mat4Transform.translate(0,bodyHeight+neckScale,0));
+      m = Mat4.multiply(m, Mat4Transform.scale(headScale,headScale/2,headScale));
+      m = Mat4.multiply(m, Mat4Transform.translate(0,0.5f,0));
+      TransformNode headTransform = new TransformNode("head transform", m);
+        ModelNode headShape = new ModelNode("Sphere(head)", orb);
 
-        NameNode ear2 = new NameNode("ear2");
-        m = Mat4Transform.scale(0.14f,0.98f,0.14f);
-        m = Mat4.multiply(m, Mat4Transform.translate(-5.5f,3.2f,0.0f));
-        TransformNode ear2Transform = new TransformNode("ear2 transform", m);
-            ModelNode ear2Shape = new ModelNode("Sphere(ear2)", orb);
+    NameNode neck = new NameNode("neck");
+      m = new Mat4(1);
+      m = Mat4.multiply(m, Mat4Transform.translate(0,bodyHeight,0));
+      m = Mat4.multiply(m, Mat4Transform.scale(neckScale,neckScale,neckScale));
+      m = Mat4.multiply(m, Mat4Transform.translate(0,0.5f,0));
+      TransformNode neckTransform = new TransformNode("neck transform", m);
+        ModelNode neckShape = new ModelNode("Sphere(neck)", orb);
+    
+    NameNode leg = new NameNode("leg");
+      m = new Mat4(1);
+      m = Mat4.multiply(m, Mat4Transform.scale(legScale,legScale,legScale));
+      m = Mat4.multiply(m, Mat4Transform.translate(0,0.5f,0));
+      TransformNode legTransform = new TransformNode("leg transform", m);
+        ModelNode legShape = new ModelNode("Sphere(leg)", orb);
 
-        NameNode eye0 = new NameNode("eye0");
-        m = Mat4Transform.scale(0.21f,0.21f,0.07f);
-        m = Mat4.multiply(m, Mat4Transform.translate(2.0f,15.0f,4.3f));
-        TransformNode eye0Transform = new TransformNode("eye0 transform", m);
-            ModelNode eye0Shape = new ModelNode("Sphere(eye0)", orb);
+    NameNode leftEar = new NameNode("leftEar");
+      m = new Mat4(1);
+      m = Mat4.multiply(m, Mat4Transform.scale(earScale,earLength,earScale));
+      m = Mat4.multiply(m, Mat4Transform.translate(0,0.5f,0));
+      TransformNode leftEarTransform = new TransformNode("LeftEar transform", m);
+        ModelNode leftEarShape = new ModelNode("Sphere(leftEar)", orb);
 
-        NameNode eye1 = new NameNode("eye1");
-        m = Mat4Transform.scale(0.49f,0.49f,0.2f);
-        m = Mat4.multiply(m, Mat4Transform.translate(-0.6f,6.5f,1.5f));
-        TransformNode eye1Transform = new TransformNode("eye1 transform", m);
-            ModelNode eye1Shape = new ModelNode("Sphere(eye1)", orb);
+    NameNode rightEar = new NameNode("rightEar");
+      m = new Mat4(1);
+      m = Mat4.multiply(m, Mat4Transform.scale(earScale,earLength,earScale));
+      m = Mat4.multiply(m, Mat4Transform.translate(0,0.5f,0));
+      TransformNode rightEarTransform = new TransformNode("RightEar transform", m);
+        ModelNode rightEarShape = new ModelNode("Sphere(rightEar)", orb);
+    
+    NameNode nose = new NameNode("nose");
+      m = new Mat4(1);
+      m = Mat4.multiply(m, Mat4Transform.translate(0,0.5f,0));
+      TransformNode noseTransform = new TransformNode("Nose transform", m);
+        ModelNode noseShape = new ModelNode("Sphere(nose)", orb);
 
-        robotRoot.addChild(robotTranslate);
-        robotTranslate.addChild(robotRotateTranslate);
-        robotRotateTranslate.addChild(body);
+
+    robotRoot.addChild(moveTranslate);
+      moveTranslate.addChild(robotTranslate);
+        robotTranslate.addChild(letRotate);
+        letRotate.addChild(body);
         body.addChild(bodyTransform);
-        bodyTransform.addChild(bodyShape);
-        body.addChild(foot);
-            foot.addChild(footTransform);
-            footTransform.addChild(footShape);
+          bodyTransform.addChild(bodyShape);
+        body.addChild(leg);
+          leg.addChild(legTransform);
+          legTransform.addChild(legShape);
         body.addChild(neck);
-            neck.addChild(neckTransform);
-            neckTransform.addChild(neckShape);
-            neck.addChild(head);
+          neck.addChild(neckTransform);
+          neckTransform.addChild(neckShape);
+          neck.addChild(backToHead);
+          backToHead.addChild(neckRotate);
+          neckRotate.addChild(backToOrigin);
+          backToOrigin.addChild(head);
             head.addChild(headTransform);
             headTransform.addChild(headShape);
-            head.addChild(ear0);
-                ear0.addChild(ear0Transform);
-                ear0Transform.addChild(ear0Shape);
-            head.addChild(ear1);
-                ear1.addChild(ear1Transform);
-                ear1Transform.addChild(ear1Shape);
-            head.addChild(ear2);
-                ear2.addChild(ear2Transform);
-                ear2Transform.addChild(ear2Shape);
-            head.addChild(eye0);
-                eye0.addChild(eye0Transform);
-                eye0Transform.addChild(eye0Shape);
-            head.addChild(eye1);
-                eye1.addChild(eye1Transform);
-                eye1Transform.addChild(eye1Shape);
+            head.addChild(toLeftEarPos);
+            toLeftEarPos.addChild(leftEarRotate);
+            leftEarRotate.addChild(leftEar);
+            leftEar.addChild(leftEarTransform);
+            leftEarTransform.addChild(leftEarShape);
+            head.addChild(toRightEarPos);
+            toRightEarPos.addChild(rightEarRotate);
+            rightEarRotate.addChild(rightEar);
+            rightEar.addChild(rightEarTransform);
+            rightEarTransform.addChild(rightEarShape);
+            head.addChild(toNosePos);
+            toNosePos.addChild(noseRotate);
+            noseRotate.addChild(nose);
+            nose.addChild(noseTransform);
+            noseTransform.addChild(noseShape);
+
     }
 
     public SGNode getRobotRoot(){
@@ -115,34 +161,36 @@ public class RobotRoot {
     }
 
     public static void setRobotPose1(){
-        robotTranslate.setTransform(Mat4Transform.translate(-2,0,-7));
+        moveTranslate.setTransform(Mat4Transform.translate(6,0,-5));
+        letRotate.setTransform(Mat4Transform.rotateAroundX(10));
+        neckRotate.setTransform(Mat4Transform.rotateAroundX(20));
+        leftEarRotate.setTransform(Mat4Transform.rotateAroundX(30));
+        rightEarRotate.setTransform(Mat4Transform.rotateAroundX(40));
+        noseRotate.setTransform(Mat4Transform.rotateAroundX(40));
         robotRoot.update();
     }
 
     public static void setRobotPose2(){
-        robotRotateTranslate.setTransform(Mat4Transform.rotateAroundZ(60));
-        robotRotateTranslate.setTransform(Mat4Transform.rotateAroundY(130));
-        robotTranslate.setTransform(Mat4Transform.translate(4,0,-4));
-        robotRoot.update();
+        //footRotate.setTransform(Mat4.multiply(Mat4.multiply(Mat4Transform.rotateAroundZ(10),Mat4Transform.rotateAroundX(-10)),Mat4Transform.rotateAroundY(130)));
+        //robotTranslate.setTransform(Mat4Transform.translate(4,0,-4));
+        //headRotateTranslate.setTransform(Mat4.multiply(Mat4Transform.rotateAroundZ(30),Mat4Transform.rotateAroundX(-10)));
+        //robotRoot.update();
     }
 
     public static void setRobotPose3(){
-        robotTranslate.setTransform(Mat4Transform.translate(4,0,3));
-        robotRoot.update();
+        //robotTranslate.setTransform(Mat4Transform.translate(4,0,3));
+        //robotRoot.update();
     }
 
     public static void setRobotPose4(){
-        robotTranslate.setTransform(Mat4Transform.translate(0,0,3));
-        robotRoot.update();
+        //robotTranslate.setTransform(Mat4Transform.translate(0,0,3));
+        //robotRoot.update();
     }
 
     public static void setRobotPose5(){
-        robotTranslate.setTransform(Mat4Transform.translate(-6,0,0));
-        robotRoot.update();
+        //robotTranslate.setTransform(Mat4Transform.translate(-6,0,0));
+        //robotRoot.update();
     }
 
-    private double getSeconds() {
-    return System.currentTimeMillis()/1000.0;
-  }
 
 }

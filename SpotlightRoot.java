@@ -13,8 +13,11 @@ public class SpotlightRoot {
     
     private Model metal;
     private Model lightBulb;
-    private static TransformNode shadeRotateTransform, lightRotateTransform;
+    private static TransformNode shadeRotateTransform, lightRotateTransform, lightTransform;
+    public static Vec4 lightPos;
     private static SGNode spotlightRoot = new NameNode("spotlightRoot");
+
+    public static Mat4 lightBulbPosition;
 
     public SpotlightRoot(Model metal, Model lightBulb){
         this.metal = metal;
@@ -54,7 +57,7 @@ public class SpotlightRoot {
         NameNode lightNode = new NameNode("spotlight light");
         m = Mat4Transform.scale(0.5f,0.5f,0.5f);
         m = Mat4.multiply(m, Mat4Transform.translate(0.0f,1.0f,0.0f));
-        TransformNode lightTransform = new TransformNode("light transform", m);
+        lightTransform = new TransformNode("light transform", m);
             ModelNode lightShape = new ModelNode("Sphere(Spotlight light)", lightBulb);  
 
         spotlightRoot.addChild(spotlightTranslate);
@@ -79,27 +82,21 @@ public class SpotlightRoot {
     public SGNode getSpotlightRoot(){
         setupTree();
         spotlightRoot.update();
+        lightPos = new Vec4(0,0,0,0);
         return spotlightRoot;
     }
-
+    
     public static void updateShadeRotation(){
         double elapsedTime = getSeconds()-startTime;
         float rotateAngle = 180f+45f*(float)Math.sin(elapsedTime);
         shadeRotateTransform.setTransform(Mat4Transform.rotateAroundX(rotateAngle));
         spotlightRoot.update();
+        lightPos = Mat4.multiply(lightTransform.worldTransform, new Vec4(0f,0.5f,0f,1.0f));
+
     }
 
     private static double getSeconds() {
         return System.currentTimeMillis()/1000.0;
-    }
-
-
-    // The light's postion is continually being changed, so needs to be calculated for each frame.
-    private Vec3 getLightPosition() {
-        float x = 0;
-        float y = 0;
-        float z = 0;
-        return new Vec3(x,y,z);   
     }
 
 }

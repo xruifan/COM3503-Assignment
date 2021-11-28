@@ -28,7 +28,7 @@ public class Light {
 
     position[0] = new Vec3(0f,15f,0f);
     position[1] = new Vec3(-7f,5f,-7f);
-    position[2] = new Vec3(0f,3f,5f);
+    position[2] = new Vec3(0f,0f,0f);
 
     model = new Mat4(1);
     shader = new Shader(gl, "vs_light_01.txt", "fs_light.txt");
@@ -126,11 +126,14 @@ public class Light {
   public void render(GL3 gl) {
 
     gl.glBindVertexArray(vertexArrayId[0]);
+    position[2] = SpotlightRoot.lightPos.toVec3();
+    //position[2] = new Vec3(5,7,5);
 
     for (int i = 0; i < position.length; i++){
       Mat4 model = new Mat4(1);
       model = Mat4.multiply(Mat4Transform.scale(0.3f,0.3f,0.3f), model);
       model = Mat4.multiply(Mat4Transform.translate(position[i]), model);
+       
       Mat4 mvpMatrix = Mat4.multiply(camera.getPerspectiveMatrix(), Mat4.multiply(camera.getViewMatrix(), model));
       shader.use(gl);
       shader.setFloatArray(gl, "mvpMatrix", mvpMatrix.toFloatArrayForGLSL());
