@@ -22,7 +22,7 @@ public class SpotlightRoot {
     }
 
     private void setupTree(){
-        TransformNode spotlightTranslate = new TransformNode(" transform",Mat4Transform.translate(7.5f,0.0f,3.0f));
+        TransformNode spotlightTranslate = new TransformNode("spotlight transform",Mat4Transform.translate(7.5f,0.0f,3.0f));
 
         NameNode baseNode = new NameNode("spotlightBase");
         Mat4 m = Mat4Transform.scale(0.5f,0.25f,0.5f);
@@ -90,8 +90,8 @@ public class SpotlightRoot {
     }
 
     private static double getSeconds() {
-    return System.currentTimeMillis()/1000.0;
-  }
+        return System.currentTimeMillis()/1000.0;
+    }
 
 
     // The light's postion is continually being changed, so needs to be calculated for each frame.

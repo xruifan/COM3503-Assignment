@@ -26,19 +26,19 @@ public class PhoneRoot {
         TransformNode phoneTranslate = new TransformNode("phone transform",Mat4Transform.translate(6,0,-6));
 
         NameNode plinthNode = new NameNode("plinth");
-        Mat4 m = Mat4Transform.scale(1.0f,0.5f,1.0f);
+        Mat4 m = Mat4Transform.scale(1.5f,0.75f,1.5f);
         m = Mat4.multiply(m, Mat4Transform.translate(0.0f,0.5f,0.0f));
         TransformNode plinthTransform = new TransformNode("plinth transform", m);
             ModelNode plinthShape = new ModelNode("Cube(plinth)", plinth);
 
         NameNode phoneCaseNode = new NameNode("phoneCase");
-        m = Mat4Transform.scale(0.7f,1.7f,0.2f);
+        m = Mat4Transform.scale(1.15f,2.55f,0.3f);
         m = Mat4.multiply(m, Mat4Transform.translate(0,0.6f,0));
         TransformNode phoneCaseTransform = new TransformNode("phoneCase transform", m);
             ModelNode phoneCaseShape = new ModelNode("Cube(phoneCase)", metal);
 
         NameNode phoneScreenNode = new NameNode("phoneScreen");
-        m = Mat4Transform.scale(0.6f,1.1f,0.2f);
+        m = Mat4Transform.scale(0.9f,1.65f,0.3f);
         m = Mat4.multiply(m, Mat4Transform.translate(0,1.1f,0.02f));
         TransformNode phoneScreenTransform = new TransformNode("phoneScreen transform", m);
             ModelNode phoneScreenShape = new ModelNode("Cube(phoneScreen)", phoneScreen);

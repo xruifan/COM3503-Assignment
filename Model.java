@@ -46,6 +46,10 @@ public class Model {
   }
 
   public void render(GL3 gl, Mat4 modelMatrix) {
+    Vec3 ambient = new Vec3(0.6f, 0.6f, 0.6f);
+    Vec3 diffuse = new Vec3(0.3f, 0.3f, 0.3f);
+    Vec3 specular = new Vec3(0.8f, 0.8f, 0.8f);
+
     Mat4 mvpMatrix = Mat4.multiply(camera.getPerspectiveMatrix(), Mat4.multiply(camera.getViewMatrix(), modelMatrix));
     shader.use(gl);
     shader.setFloatArray(gl, "model", modelMatrix.toFloatArrayForGLSL());
@@ -53,11 +57,30 @@ public class Model {
     
     shader.setVec3(gl, "viewPos", camera.getPosition());
 
-    shader.setVec3(gl, "light.position", light.getPosition());
-    shader.setVec3(gl, "light.ambient", light.getMaterial().getAmbient());
-    shader.setVec3(gl, "light.diffuse", light.getMaterial().getDiffuse());
-    shader.setVec3(gl, "light.specular", light.getMaterial().getSpecular());
+    shader.setVec3(gl, "dirLight.position", light.getPosition(0));
+    shader.setVec3(gl, "dirLight.ambient", light.getDirLight().getAmbient());
+    shader.setVec3(gl, "dirLight.diffuse", light.getDirLight().getDiffuse());
+    shader.setVec3(gl, "dirLight.specular", light.getDirLight().getSpecular());
 
+    shader.setVec3(gl, "pointLight.position", light.getPosition(1));
+    shader.setVec3(gl, "pointLight.ambient", light.getPointLight().getAmbient());
+    shader.setVec3(gl, "pointLight.diffuse", light.getPointLight().getDiffuse());
+    shader.setVec3(gl, "pointLight.specular", light.getPointLight().getSpecular());
+    shader.setFloat(gl, "pointLight.constant", 1.0f);
+    shader.setFloat(gl, "pointLight.linear", 0.09f);
+    shader.setFloat(gl, "pointLight.quadratic", 0.032f);
+    
+    shader.setVec3(gl, "spotLight.position", light.getPosition(2));
+    shader.setVec3(gl, "spotLight.ambient", light.getSpotlight().getAmbient());
+    shader.setVec3(gl, "spotLight.diffuse", light.getSpotlight().getDiffuse());
+    shader.setVec3(gl, "spotLight.specular", light.getSpotlight().getSpecular());
+    shader.setFloat(gl, "spotLight.constant", 1.0f);
+    shader.setFloat(gl, "spotLight.linear", 0.09f);
+    shader.setFloat(gl, "spotLight.quadratic", 0.032f);
+    shader.setVec3(gl, "spotLight.direction", new Vec3(0,-1,0));
+    shader.setFloat(gl, "spotLight.cutOff", (float)Math.cos(Math.toRadians(12.5)));
+    shader.setFloat(gl, "spotLight.outerCutOff", (float)Math.cos(Math.toRadians(15)));
+    
     shader.setVec3(gl, "material.ambient", material.getAmbient());
     shader.setVec3(gl, "material.diffuse", material.getDiffuse());
     shader.setVec3(gl, "material.specular", material.getSpecular());

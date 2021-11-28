@@ -59,6 +59,15 @@ public class Museum extends JFrame implements ActionListener {
       b = new JButton("Pose 5");
       b.addActionListener(this);
       p.add(b);
+      b = new JButton("Direcional light switch");
+      b.addActionListener(this);
+      p.add(b);
+      b = new JButton("Point light switch");
+      b.addActionListener(this);
+      p.add(b);
+      b = new JButton("Spotlight switch");
+      b.addActionListener(this);
+      p.add(b);
     this.add(p, BorderLayout.SOUTH);
     
     addWindowListener(new WindowAdapter() {
@@ -88,6 +97,15 @@ public class Museum extends JFrame implements ActionListener {
     }
     else if (e.getActionCommand().equalsIgnoreCase("Pose 5")) {
       glEventListener.robotPose5();
+    }
+    else if (e.getActionCommand().equalsIgnoreCase("Direcional light switch")) {
+      glEventListener.dirLightSwitch();
+    }
+    else if (e.getActionCommand().equalsIgnoreCase("Point light switch")) {
+      glEventListener.pointLightSwitch();
+    }
+    else if (e.getActionCommand().equalsIgnoreCase("Spotlight switch")) {
+      glEventListener.spotlightSwitch();
     }
     else if(e.getActionCommand().equalsIgnoreCase("quit"))
       System.exit(0);

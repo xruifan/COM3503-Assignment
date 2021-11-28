@@ -77,23 +77,57 @@ public class Museum_GLEventListener implements GLEventListener {
    *
    */
   public void robotPose1(){
-    
+    RobotRoot.setRobotPose1();
   }
 
   public void robotPose2(){
-    
+    RobotRoot.setRobotPose2();
   }
 
   public void robotPose3(){
-    
+    RobotRoot.setRobotPose3();
   }
 
   public void robotPose4(){
-    
+    RobotRoot.setRobotPose4();
   }
 
   public void robotPose5(){
-    
+    RobotRoot.setRobotPose5();
+  }
+
+  private boolean dirStatus = true;
+  private boolean pointStatus = true;
+  private boolean spotlightStatus = true;
+
+  public void dirLightSwitch(){
+    if (dirStatus){
+      light.offDirLight();
+      dirStatus = false;
+    } else {
+      light.onDirLight();
+      dirStatus = true;
+    }
+  }
+
+  public void pointLightSwitch(){
+    if (pointStatus){
+      light.offPointLight();
+      pointStatus = false;
+    } else {
+      light.onPointLight();
+      pointStatus = true;
+    }
+  }
+
+  public void spotlightSwitch(){
+    if (spotlightStatus){
+      light.offSpotlight();
+      spotlightStatus = false;
+    } else {
+      light.onSpotlight();
+      spotlightStatus = true;
+    }
   }
    
    
@@ -127,7 +161,7 @@ public class Museum_GLEventListener implements GLEventListener {
     int[] texturePhoneScreen = TextureLibrary.loadTexture(gl, "textures/phone_screen.jpg");
     
     light = new Light(gl);
-    light.setPosition(new Vec3(0,5,0));  // changing light position each frame
+    // light.setPosition(new Vec3(0,5,0));  // changing light position each frame
     light.setCamera(camera);
     
     // floor
@@ -167,14 +201,6 @@ public class Museum_GLEventListener implements GLEventListener {
     // egg root
     eggRoot = new EggRoot(plinth, orb).getEggRoot();
 
-
-    ///
-    Material material = new Material(new Vec3(1.0f, 1.0f, 1.0f), new Vec3(1.0f, 1.0f, 1.0f), new Vec3(0.1f, 0.1f, 0.1f), 16.0f);
-    float size = 16f;
-    Mat4 modelMatrix = Mat4Transform.scale(size,1f,size);
-    Mat4 m = Mat4Transform.scale(1.0f,0.5f,1.0f);
-    ///
-
     // phone case (metal)
     mesh = new Mesh(gl, Cube.vertices.clone(), Cube.indices.clone());
     shader = new Shader(gl, "vs_cube_04.txt", "fs.txt");
@@ -206,7 +232,7 @@ public class Museum_GLEventListener implements GLEventListener {
     for (Model wallPiece : doorWall){
       wallPiece.render(gl);
     }
-    skyRender(gl);
+    sceneRender(gl);
     eggRoot.draw(gl);
     phoneRoot.draw(gl);
     SpotlightRoot.updateShadeRotation();
@@ -216,7 +242,7 @@ public class Museum_GLEventListener implements GLEventListener {
 
 
   // The scene's texture changes by time 
-  private void skyRender(GL3 gl){
+  private void sceneRender(GL3 gl){
     double elapsedTime = getSeconds()-startTime;
     if (Math.sin(Math.toRadians(elapsedTime*25)) >= 0){
       sceneDay.render(gl);

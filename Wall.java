@@ -38,7 +38,7 @@ public class Wall {
         modelMatrix = Mat4Transform.scale(1f,1f,1f);
             for (int i = 0; i < 4; i++){
                 for (int j = 0; j < 4; j++){
-                    if ((i == 1 && j == 1) || (i == 1 && j == 2)){continue;};
+                    if ((i == 1 && j == 1) || (i == 1 && j == 2)) continue;
                     modelMatrix = Mat4Transform.scale(size/4,1f,size/4);
                     modelMatrix = Mat4.multiply(Mat4Transform.rotateAroundY(90), modelMatrix);
                     modelMatrix = Mat4.multiply(Mat4Transform.rotateAroundZ(-90), modelMatrix);
