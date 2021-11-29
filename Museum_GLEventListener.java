@@ -137,7 +137,7 @@ public class Museum_GLEventListener implements GLEventListener {
     int[] texturePlinthSpecular = TextureLibrary.loadTexture(gl, "textures/container2_specular.jpg");
     int[] textureEgg = TextureLibrary.loadTexture(gl, "textures/jade.jpg");
     int[] textureEggSpecular = TextureLibrary.loadTexture(gl, "textures/jade_specular.jpg");
-    int[] textureMetal = TextureLibrary.loadTexture(gl, "textures/phone_case.jpg");
+    int[] textureMetal = TextureLibrary.loadTexture(gl, "textures/metal.jpg");
     int[] texturePhoneScreen = TextureLibrary.loadTexture(gl, "textures/phone_screen.jpg");
     int[] textureVen = TextureLibrary.loadTexture(gl, "textures/ven0aaa2.jpg");
     int[] textureVenSpecular = TextureLibrary.loadTexture(gl, "textures/ven0aaa2_specular.jpg");
