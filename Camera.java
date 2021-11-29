@@ -2,6 +2,7 @@ import gmaths.*;
 import java.awt.event.*;
 import com.jogamp.opengl.awt.GLCanvas;
 
+// code from exercise sheets
 public class Camera {
   
   public enum CameraType {X, Z};
