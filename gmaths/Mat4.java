@@ -71,6 +71,7 @@ public class Mat4 {   // row column formulation
     return result;
   }
 
+  // my own code here
   public static Vec4 multiply(Mat4 a, Vec4 b) {
     Float[] vec = new Float[4];
     for (int i=0; i<4; ++i) {
