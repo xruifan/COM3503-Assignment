@@ -139,7 +139,7 @@ public class Museum_GLEventListener implements GLEventListener {
 
   
   private void initialise(GL3 gl) {
-    // createRandomNumbers();
+    
     int[] textureFloor = TextureLibrary.loadTexture(gl, "textures/floor.jpg");
     int[] textureFloorSpecular = TextureLibrary.loadTexture(gl, "textures/floor_specular.jpg");
     int[] textureWall = TextureLibrary.loadTexture(gl, "textures/wall.jpg");
@@ -156,7 +156,6 @@ public class Museum_GLEventListener implements GLEventListener {
     int[] textureVenSpecular = TextureLibrary.loadTexture(gl, "textures/ven0aaa2_specular.jpg");
     
     light = new Light(gl);
-    // light.setPosition(new Vec3(0,5,0));  // changing light position each frame
     light.setCamera(camera);
     
     // floor
@@ -223,6 +222,7 @@ public class Museum_GLEventListener implements GLEventListener {
   private void render(GL3 gl) {
     gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
+    // change spotlight's position and direction on each frame
     light.setSpotlightPos(spotlight.getLightPos().toVec3());
     light.setSpotlightDirection(spotlight.getShadeDirection());
 
