@@ -231,6 +231,7 @@ public class Museum_GLEventListener implements GLEventListener {
     phoneRoot.draw(gl);
     SpotlightRoot.updateShadeRotation();
     spotlightRoot.draw(gl);
+    RobotRoot.doRobotTargetPose();
     robotRoot.draw(gl);
   }
 
