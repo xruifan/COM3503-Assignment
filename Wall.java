@@ -11,7 +11,7 @@ import com.jogamp.opengl.util.glsl.*;
 /**
 * I declare that this code is my own work
 *
-* @author   Xuan-Rui Fan, lhsu1@sheffiel.ac.uk
+* @author   Xuan-Rui Fan, lhsu1@sheffield.ac.uk
 * 
 */
 

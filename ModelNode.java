@@ -1,5 +1,6 @@
 import com.jogamp.opengl.*;
 
+// code from exercise sheets
 public class ModelNode extends SGNode {
 
   protected Model model;
