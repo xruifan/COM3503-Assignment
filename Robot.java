@@ -14,11 +14,11 @@ import com.jogamp.opengl.util.glsl.*;
 * 
 */
 
-public class RobotRoot {
+public class Robot {
 
   private Model orb;
 
-  public RobotRoot(Model orb){
+  public Robot(Model orb){
       this.orb = orb;
   }
 

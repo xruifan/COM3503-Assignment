@@ -132,8 +132,8 @@ public class Museum_GLEventListener implements GLEventListener {
   private Model floor, sceneDay, sceneNight, plinth, orb, metal, phoneScreen, lightBulb, venOrb;
   private List<Model> windowWall = new ArrayList<>();
   private List<Model> doorWall = new ArrayList<>();
-  public RobotRoot robot;
-  public SpotlightRoot spotlight;
+  public Robot robot;
+  public Spotlight spotlight;
   private Light light;
   private SGNode phoneRoot, eggRoot, spotlightRoot, robotRoot;
 
@@ -195,7 +195,7 @@ public class Museum_GLEventListener implements GLEventListener {
     lightBulb = new LightBulb(gl, camera, light, shader, mesh).getLightBulb();
 
     // egg root
-    eggRoot = new EggRoot(plinth, orb).getEggRoot();
+    eggRoot = new Egg(plinth, orb).getEggRoot();
 
     // phone case (metal)
     mesh = new Mesh(gl, Cube.vertices.clone(), Cube.indices.clone());
@@ -207,16 +207,16 @@ public class Museum_GLEventListener implements GLEventListener {
     phoneScreen = new PhoneScreen(gl, camera, light, shader, mesh, texturePhoneScreen).getPhoneScreen();
 
     // phone root
-    phoneRoot = new PhoneRoot(plinth, metal, phoneScreen).getPhoneRoot();
+    phoneRoot = new Phone(plinth, metal, phoneScreen).getPhoneRoot();
 
     // spot light root
-    spotlight = new SpotlightRoot(metal, lightBulb);
+    spotlight = new Spotlight(metal, lightBulb);
     spotlightRoot = spotlight.getSpotlightRoot();
 
     light.setLightPos(spotlight.getLightPos().toVec3());
 
     // robot root 
-    robot = new RobotRoot(venOrb);
+    robot = new Robot(venOrb);
     robotRoot = robot.getRobotRoot();
 
   }

@@ -14,13 +14,13 @@ import com.jogamp.opengl.util.glsl.*;
 * 
 */
 
-public class EggRoot {
+public class Egg{
     
     private Model plinth;
     private Model orb;
     private SGNode eggRoot = new NameNode("eggRoot");
 
-    public EggRoot(Model plinth, Model orb){
+    public Egg(Model plinth, Model orb){
         this.plinth = plinth;
         this.orb = orb;
     }

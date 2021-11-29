@@ -14,7 +14,7 @@ import com.jogamp.opengl.util.glsl.*;
 * 
 */
 
-public class SpotlightRoot {
+public class Spotlight {
 
     private  double startTime = getSeconds();
     
@@ -25,7 +25,7 @@ public class SpotlightRoot {
 
     public Vec3 shadeDirection = new Vec3(0,-1,0);
 
-    public SpotlightRoot(Model metal, Model lightBulb){
+    public Spotlight(Model metal, Model lightBulb){
         this.metal = metal;
         this.lightBulb = lightBulb;
     }

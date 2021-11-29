@@ -14,13 +14,13 @@ import com.jogamp.opengl.util.glsl.*;
 * 
 */
 
-public class PhoneRoot {
+public class Phone {
 
     private Model plinth;
     private Model metal;
     private Model phoneScreen;
 
-    public PhoneRoot(Model plinth, Model metal, Model phoneScreen){
+    public Phone(Model plinth, Model metal, Model phoneScreen){
         this.plinth = plinth;
         this.metal = metal;
         this.phoneScreen = phoneScreen;
