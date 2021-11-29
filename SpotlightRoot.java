@@ -18,6 +18,7 @@ public class SpotlightRoot {
     private static SGNode spotlightRoot = new NameNode("spotlightRoot");
 
     public static Mat4 lightBulbPosition;
+    public static Vec3 shadeDirection = new Vec3(0,-1,0);
 
     public SpotlightRoot(Model metal, Model lightBulb){
         this.metal = metal;
@@ -85,7 +86,8 @@ public class SpotlightRoot {
         shadeRotateTransform.setTransform(Mat4Transform.rotateAroundX(rotateAngle));
         spotlightRoot.update();
         lightPos = Mat4.multiply(lightTransform.worldTransform, new Vec4(0f,0.5f,0f,1.0f));
-
+        shadeDirection = Vec3Transform.rotateAroundX(new Vec3(0,-1,0), rotateAngle);
+        
     }
 
     public SGNode getSpotlightRoot(){
