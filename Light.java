@@ -130,8 +130,9 @@ public class Light {
     //position[2] = new Vec3(5,7,5);
 
     for (int i = 0; i < position.length; i++){
+      if (i == 0) continue;
       Mat4 model = new Mat4(1);
-      model = Mat4.multiply(Mat4Transform.scale(0.3f,0.3f,0.3f), model);
+      model = Mat4.multiply(Mat4Transform.scale(0.4f,0.4f,0.4f), model);
       model = Mat4.multiply(Mat4Transform.translate(position[i]), model);
        
       Mat4 mvpMatrix = Mat4.multiply(camera.getPerspectiveMatrix(), Mat4.multiply(camera.getViewMatrix(), model));

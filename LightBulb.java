@@ -16,7 +16,7 @@ public class LightBulb {
     private Mesh mesh;
 
     Material material = new Material(new Vec3(1.0f, 1.0f, 1.0f), new Vec3(1.0f, 1.0f, 1.0f), new Vec3(1.0f, 1.0f, 1.0f), 32.0f);
-    Mat4 modelMatrix = Mat4.multiply(Mat4Transform.scale(1.0f,1.0f,1.0f), Mat4Transform.translate(0,0.5f,0));
+    Mat4 modelMatrix = Mat4.multiply(Mat4Transform.scale(1.0f,1.0f,1.0f), Mat4Transform.translate(0,0.0f,0));
 
     public LightBulb(GL3 gl, Camera camera, Light light, Shader shader, Mesh mesh) {
         this.gl = gl;

@@ -79,13 +79,6 @@ public class SpotlightRoot {
                 lightTransform.addChild(lightShape);
     }
 
-    public SGNode getSpotlightRoot(){
-        setupTree();
-        spotlightRoot.update();
-        lightPos = new Vec4(0,0,0,0);
-        return spotlightRoot;
-    }
-    
     public static void updateShadeRotation(){
         double elapsedTime = getSeconds()-startTime;
         float rotateAngle = 180f+45f*(float)Math.sin(elapsedTime);
@@ -93,6 +86,13 @@ public class SpotlightRoot {
         spotlightRoot.update();
         lightPos = Mat4.multiply(lightTransform.worldTransform, new Vec4(0f,0.5f,0f,1.0f));
 
+    }
+
+    public SGNode getSpotlightRoot(){
+        setupTree();
+        spotlightRoot.update();
+        lightPos = new Vec4(0,0,0,0);
+        return spotlightRoot;
     }
 
     private static double getSeconds() {

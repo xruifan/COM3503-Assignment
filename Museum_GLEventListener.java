@@ -76,26 +76,6 @@ public class Museum_GLEventListener implements GLEventListener {
    *
    *
    */
-  public void robotPose1(){
-    RobotRoot.setRobotPose1();
-  }
-
-  public void robotPose2(){
-    RobotRoot.setRobotPose2();
-  }
-
-  public void robotPose3(){
-    RobotRoot.setRobotPose3();
-  }
-
-  public void robotPose4(){
-    RobotRoot.setRobotPose4();
-  }
-
-  public void robotPose5(){
-    RobotRoot.setRobotPose5();
-  }
-
   private boolean dirStatus = true;
   private boolean pointStatus = true;
   private boolean spotlightStatus = true;
@@ -139,7 +119,7 @@ public class Museum_GLEventListener implements GLEventListener {
    
   private Camera camera;
   private Mat4 perspective;
-  private Model floor, sceneDay, sceneNight, plinth, orb, metal, phoneScreen, lightBulb;
+  private Model floor, sceneDay, sceneNight, plinth, orb, metal, phoneScreen, lightBulb, venOrb;
   private List<Model> windowWall = new ArrayList<>();
   private List<Model> doorWall = new ArrayList<>();
   private Light light;
@@ -159,6 +139,8 @@ public class Museum_GLEventListener implements GLEventListener {
     int[] textureEggSpecular = TextureLibrary.loadTexture(gl, "textures/jade_specular.jpg");
     int[] textureMetal = TextureLibrary.loadTexture(gl, "textures/phone_case.jpg");
     int[] texturePhoneScreen = TextureLibrary.loadTexture(gl, "textures/phone_screen.jpg");
+    int[] textureVen = TextureLibrary.loadTexture(gl, "textures/ven0aaa2.jpg");
+    int[] textureVenSpecular = TextureLibrary.loadTexture(gl, "textures/ven0aaa2_specular.jpg");
     
     light = new Light(gl);
     // light.setPosition(new Vec3(0,5,0));  // changing light position each frame
@@ -166,11 +148,12 @@ public class Museum_GLEventListener implements GLEventListener {
     
     // floor
     Mesh mesh = new Mesh(gl, TwoTriangles.vertices.clone(), TwoTriangles.indices.clone());
-    Shader shader = new Shader(gl, "vs_tt_05.txt", "fs.txt");
+    Shader shader = new Shader(gl, "vs_tt_05.txt", "fs_2.txt");
 
     floor = new Floor(gl, camera, light, shader, mesh, textureFloor, textureFloorSpecular).getFloor();
 
     // window wall
+    shader = new Shader(gl, "vs_tt_05.txt", "fs.txt");
     windowWall = new Wall(gl, camera, light, shader, mesh, textureWall).getWindowWall();
 
     // door wall
@@ -182,15 +165,16 @@ public class Museum_GLEventListener implements GLEventListener {
 
     // plinth
     mesh = new Mesh(gl, Cube.vertices.clone(), Cube.indices.clone());
-    shader = new Shader(gl, "vs_cube_04.txt", "fs.txt");
+    shader = new Shader(gl, "vs_cube_04.txt", "fs_2.txt");
 
     plinth = new Plinth(gl, camera, light, shader, mesh, texturePlinth, texturePlinthSpecular).getPlinth();
 
     // orb
     mesh = new Mesh(gl, Sphere.vertices.clone(), Sphere.indices.clone());
-    shader = new Shader(gl, "vs_sphere_04.txt", "fs.txt");
+    shader = new Shader(gl, "vs_sphere_04.txt", "fs_2.txt");
 
     orb = new Orb(gl, camera, light, shader, mesh, textureEgg, textureEggSpecular).getOrb();
+    venOrb = new Orb(gl, camera, light, shader, mesh, textureVen, textureVenSpecular).getOrb();
 
     // lightBulb
     mesh = new Mesh(gl, Sphere.vertices.clone(), Sphere.indices.clone());
@@ -217,7 +201,7 @@ public class Museum_GLEventListener implements GLEventListener {
     spotlightRoot = new SpotlightRoot(metal, lightBulb).getSpotlightRoot();
 
     // robot root 
-    robotRoot = new RobotRoot(orb).getRobotRoot();
+    robotRoot = new RobotRoot(venOrb).getRobotRoot();
 
   }
  
