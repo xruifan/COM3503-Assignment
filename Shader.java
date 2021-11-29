@@ -5,7 +5,8 @@ import java.nio.file.Paths;
 import java.nio.charset.Charset;
 import com.jogamp.opengl.*;
 import com.jogamp.opengl.util.glsl.*;  
-  
+
+// code from exercies sheets  
 public class Shader {
   
   private static final boolean DISPLAY_SHADERS = false;

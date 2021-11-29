@@ -3,6 +3,7 @@ import java.io.FileInputStream;
 import com.jogamp.opengl.*;
 import com.jogamp.opengl.util.texture.spi.JPEGImage;
 
+// code from exercise sheets
 public final class TextureLibrary {
     
   // only deals with rgb jpg files

@@ -7,7 +7,15 @@ import com.jogamp.opengl.*;
 import com.jogamp.opengl.util.*;
 import com.jogamp.opengl.util.awt.*;
 import com.jogamp.opengl.util.glsl.*;
-  
+
+
+/**
+* I declare that this code is my own work 
+*
+* @author   Xuan-Rui Fan, lhsu1@sheffiel.ac.uk
+* 
+*/
+
 public class Museum_GLEventListener implements GLEventListener {
   
   private static final boolean DISPLAY_SHADERS = false;
@@ -76,6 +84,8 @@ public class Museum_GLEventListener implements GLEventListener {
    *
    *
    */
+
+  // my own work
   private boolean dirStatus = true;
   private boolean pointStatus = true;
   private boolean spotlightStatus = true;
@@ -240,24 +250,11 @@ public class Museum_GLEventListener implements GLEventListener {
   /* TIME
    */ 
   
+  // code from exercise sheets
   private double startTime;
   
   private double getSeconds() {
     return System.currentTimeMillis()/1000.0;
   }
 
-  // ***************************************************
-  /* An array of random numbers
-   
-  
-  private int NUM_RANDOMS = 1000;
-  private float[] randoms;
-  
-  private void createRandomNumbers() {
-    randoms = new float[NUM_RANDOMS];
-    for (int i=0; i<NUM_RANDOMS; ++i) {
-      randoms[i] = (float)Math.random();
-    }
-  }
-  */ 
 }

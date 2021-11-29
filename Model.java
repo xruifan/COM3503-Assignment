@@ -3,6 +3,13 @@ import java.nio.*;
 import com.jogamp.common.nio.*;
 import com.jogamp.opengl.*;
 
+/**
+* I declare that this code is my own work
+*
+* @author   Xuan-Rui Fan, lhsu1@sheffiel.ac.uk
+* 
+*/
+
 public class Model {
   
   private Mesh mesh;
@@ -57,6 +64,8 @@ public class Model {
     
     shader.setVec3(gl, "viewPos", camera.getPosition());
 
+
+    // new code
     shader.setVec3(gl, "dirLight.position", light.getPosition(0));
     shader.setVec3(gl, "dirLight.ambient", light.getDirLight().getAmbient());
     shader.setVec3(gl, "dirLight.diffuse", light.getDirLight().getDiffuse());
@@ -81,6 +90,7 @@ public class Model {
     shader.setFloat(gl, "spotLight.cutOff", (float)Math.cos(Math.toRadians(12.5)));
     shader.setFloat(gl, "spotLight.outerCutOff", (float)Math.cos(Math.toRadians(15)));
     
+    // code from exercise sheets 
     shader.setVec3(gl, "material.ambient", material.getAmbient());
     shader.setVec3(gl, "material.diffuse", material.getDiffuse());
     shader.setVec3(gl, "material.specular", material.getSpecular());

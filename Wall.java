@@ -8,6 +8,13 @@ import com.jogamp.opengl.util.*;
 import com.jogamp.opengl.util.awt.*;
 import com.jogamp.opengl.util.glsl.*;
 
+/**
+* I declare that this code is my own work
+*
+* @author   Xuan-Rui Fan, lhsu1@sheffiel.ac.uk
+* 
+*/
+
 public class Wall {
 
     private GL3 gl;

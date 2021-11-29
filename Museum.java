@@ -6,6 +6,14 @@ import com.jogamp.opengl.*;
 import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.util.FPSAnimator;
 
+/**
+* I declare that this code is my own work
+*
+* @author   Xuan-Rui Fan, lhsu1@sheffiel.ac.uk
+* 
+*/
+
+// code from exercise sheets
 public class Museum extends JFrame implements ActionListener {
   
   private static final int WIDTH = 1024;
@@ -43,6 +51,7 @@ public class Museum extends JFrame implements ActionListener {
         fileMenu.add(quitItem);
     menuBar.add(fileMenu);
     
+    // my own work
     JPanel p = new JPanel();
       JButton b = new JButton("Pose 1");
       b.addActionListener(this);

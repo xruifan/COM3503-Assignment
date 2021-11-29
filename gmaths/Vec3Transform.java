@@ -1,6 +1,11 @@
 package gmaths;
 
-
+/**
+* I declare that this code is my own work
+*
+* @author   Xuan-Rui Fan, lhsu1@sheffiel.ac.uk
+* 
+*/
 
 public final class Vec3Transform{
 

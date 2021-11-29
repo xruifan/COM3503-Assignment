@@ -2,9 +2,17 @@ import gmaths.*;
 import java.nio.*;
 import com.jogamp.common.nio.*;
 import com.jogamp.opengl.*;
+
+/**
+* I declare that this code is my own work
+*
+* @author   Xuan-Rui Fan, lhsu1@sheffiel.ac.uk
+* 
+*/
   
 public class Light {
-  
+
+  // new code
   private Material material, dirLight, pointLight, spotlight;
   private Vec3[] position = new Vec3[3];
   private Mat4 model;
@@ -27,7 +35,7 @@ public class Light {
     onSpotlight();
 
     position[0] = new Vec3(0f,5f,0f);
-    position[1] = new Vec3(-7f,5f,-7f);
+    position[1] = new Vec3(3f,5f,-5f);
     position[2] = new Vec3(0f,0f,0f);
 
     model = new Mat4(1);
@@ -144,6 +152,7 @@ public class Light {
     gl.glBindVertexArray(0);
   }
 
+  // from here code is from exercise sheets
   public void dispose(GL3 gl) {
     gl.glDeleteBuffers(1, vertexBufferId, 0);
     gl.glDeleteVertexArrays(1, vertexArrayId, 0);
