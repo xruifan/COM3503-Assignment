@@ -55,13 +55,13 @@ public class Robot {
       x = Mat4.multiply(x, Mat4Transform.rotateAroundX(0));
       x = Mat4.multiply(x, Mat4Transform.rotateAroundZ(0));
       x = Mat4.multiply(x, Mat4Transform.rotateAroundY(0));
-      footRotate = new TransformNode("with foot rotation", x);
+      footRotate = new TransformNode("foot rotation", x);
 
     Mat4 y = new Mat4(1);
       y = Mat4.multiply(y, Mat4Transform.rotateAroundX(0));
       y = Mat4.multiply(y, Mat4Transform.rotateAroundZ(0));
       y = Mat4.multiply(y, Mat4Transform.rotateAroundY(0));
-      neckRotate = new TransformNode("with neck rotation", y);
+      neckRotate = new TransformNode("neck rotation", y);
 
     Mat4 z = new Mat4(1);
     z = Mat4.multiply(z, Mat4Transform.rotateAroundX(0));
@@ -75,7 +75,7 @@ public class Robot {
 
     Mat4 b = new Mat4(1);
     b = Mat4.multiply(b, Mat4Transform.scale(midEarSize,midEarSize*2.5f,midEarSize));
-    midEarRotate = new TransformNode("mid ear Size", b);
+    midEarRotate = new TransformNode("mid ear size", b);
   
     body = new NameNode("body");
       Mat4 m = new Mat4(1);
@@ -112,22 +112,22 @@ public class Robot {
       m = new Mat4(1);
       m = Mat4.multiply(m, Mat4Transform.scale(earSize,earLength,earSize));
       m = Mat4.multiply(m, Mat4Transform.translate(0,0.5f,0));
-      leftEarTransform = new TransformNode("LeftEar transform", m);
-        leftEarShape = new ModelNode("Sphere(leftEar)", orb);
+      leftEarTransform = new TransformNode("left ear transform", m);
+        leftEarShape = new ModelNode("Sphere(left Ear)", orb);
 
     rightEar = new NameNode("rightEar");
       m = new Mat4(1);
       m = Mat4.multiply(m, Mat4Transform.scale(earSize,earLength,earSize));
       m = Mat4.multiply(m, Mat4Transform.translate(0,0.5f,0));
-      rightEarTransform = new TransformNode("RightEar transform", m);
-        rightEarShape = new ModelNode("Sphere(rightEar)", orb);
+      rightEarTransform = new TransformNode("rightEar transform", m);
+        rightEarShape = new ModelNode("Sphere(right ear)", orb);
     
     midEar = new NameNode("midEar");
       m = new Mat4(1);
       m = Mat4.multiply(m, Mat4Transform.scale(earSize,earLength*0.5f,earSize));
       m = Mat4.multiply(m, Mat4Transform.translate(0,0.5f,-1));
-      midEarTransform = new TransformNode("midEar transform", m);
-        midEarShape = new ModelNode("Sphere(midEar)", orb);
+      midEarTransform = new TransformNode("mid ear transform", m);
+        midEarShape = new ModelNode("Sphere(mid ear)", orb);
 
   }
 
@@ -186,6 +186,7 @@ public class Robot {
       targetLERY, targetLERZ, currentTarRERX, currentTarRERY, currentTarRERZ, targetRERX, targetRERY, targetRERZ, currentTarMERX, currentTarMERY, 
       currentTarMERZ, targetMERX, targetMERY, targetMERZ = 0;
 
+  // set target data
   private void setLocation(float x, float z){
     targetX = x;
     targetZ = z;
@@ -222,6 +223,7 @@ public class Robot {
     targetMERZ = mERZ;
   }
   
+  // set pose target data
   public void setRobotPose1(){
     setLocation(-2f,-7f);
     setFR(0f,0f,0f);
@@ -240,13 +242,12 @@ public class Robot {
     setMER(0f,0f,0f);
   }
 
-
   public void setRobotPose3(){
     setLocation(3f,3f);
-    setFR(0f,-0f,-20f);
-    setNR(0f,0f,-50f);
-    setLER(0f,0f,20f);
-    setRER(0f,0f,-20f);
+    setFR(20f,90f,0f);
+    setNR(40f,0f,0f);
+    setLER(0f,0f,70f);
+    setRER(0f,0f,-70f);
     setMER(10f,0f,0f);
   }
 
@@ -263,11 +264,12 @@ public class Robot {
     setLocation(-5f,0f);
     setFR(-10f,270f,0f);
     setNR(-25f,0f,0f);
-    setLER(-30f,0f,0f);
-    setRER(-20f,0f,0f);
-    setMER(-10f,0f,0f);
+    setLER(-70f,0f,0f);
+    setRER(-90f,0f,0f);
+    setMER(-20f,0f,0f);
   }
   
+  // update target of next frame
   private void updateNextL(){
     float lXMovement = Math.abs(currentTarX - targetX)/30;
     float lZMovement = Math.abs(currentTarZ - targetZ)/30;
@@ -290,9 +292,9 @@ public class Robot {
   }
 
   private void updateNextNR(){
-    float nRXMovement = Math.abs(currentTarNRX - targetNRX)/2;
-    float nRYMovement = Math.abs(currentTarNRY - targetNRY)/2;
-    float nRZMovement = Math.abs(currentTarNRZ - targetNRZ)/2;
+    float nRXMovement = Math.abs(currentTarNRX - targetNRX)/20;
+    float nRYMovement = Math.abs(currentTarNRY - targetNRY)/20;
+    float nRZMovement = Math.abs(currentTarNRZ - targetNRZ)/20;
     if (currentTarNRX <= targetNRX) currentTarNRX += nRXMovement;
     if (currentTarNRX >= targetNRX) currentTarNRX -= nRXMovement;
     if (currentTarNRY <= targetNRY) currentTarNRY += nRYMovement;
@@ -302,9 +304,9 @@ public class Robot {
   }
 
   private void updateNextLER(){
-    float lERXMovement = Math.abs(currentTarLERX - targetLERX)/2;
-    float lERYMovement = Math.abs(currentTarLERY - targetLERY)/2;
-    float lERZMovement = Math.abs(currentTarLERZ - targetLERZ)/2;
+    float lERXMovement = Math.abs(currentTarLERX - targetLERX)/20;
+    float lERYMovement = Math.abs(currentTarLERY - targetLERY)/20;
+    float lERZMovement = Math.abs(currentTarLERZ - targetLERZ)/20;
     if (currentTarLERX <= targetLERX) currentTarLERX += lERXMovement;
     if (currentTarLERX >= targetLERX) currentTarLERX -= lERXMovement;
     if (currentTarLERY <= targetLERY) currentTarLERY += lERYMovement;
@@ -314,9 +316,9 @@ public class Robot {
   }
 
   private void updateNextRER(){
-    float rERXMovement = Math.abs(currentTarRERX - targetRERX)/2;
-    float rERYMovement = Math.abs(currentTarRERY - targetRERY)/2;
-    float rERZMovement = Math.abs(currentTarRERZ - targetRERZ)/2;
+    float rERXMovement = Math.abs(currentTarRERX - targetRERX)/20;
+    float rERYMovement = Math.abs(currentTarRERY - targetRERY)/20;
+    float rERZMovement = Math.abs(currentTarRERZ - targetRERZ)/20;
     if (currentTarRERX <= targetRERX) currentTarRERX += rERXMovement;
     if (currentTarRERX >= targetRERX) currentTarRERX -= rERXMovement;
     if (currentTarRERY <= targetRERY) currentTarRERY += rERYMovement;
@@ -326,9 +328,9 @@ public class Robot {
   }
 
   private void updateNextMER(){
-    float mERXMovement = Math.abs(currentTarMERX - targetMERX)/2;
-    float mERYMovement = Math.abs(currentTarMERY - targetMERY)/2;
-    float mERZMovement = Math.abs(currentTarMERZ - targetMERZ)/2;
+    float mERXMovement = Math.abs(currentTarMERX - targetMERX)/20;
+    float mERYMovement = Math.abs(currentTarMERY - targetMERY)/20;
+    float mERZMovement = Math.abs(currentTarMERZ - targetMERZ)/20;
     if (currentTarMERX <= targetMERX) currentTarMERX += mERXMovement;
     if (currentTarMERX >= targetMERX) currentTarMERX -= mERXMovement;
     if (currentTarMERY <= targetMERY) currentTarMERY += mERYMovement;
@@ -337,6 +339,7 @@ public class Robot {
     if (currentTarMERZ >= targetMERZ) currentTarMERZ -= mERZMovement;
   }
 
+  // update robot's target of next frame and perform
   public void doRobotTargetPose(){
     updateNextL();
     updateNextFR();
