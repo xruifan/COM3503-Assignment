@@ -132,7 +132,7 @@ public class Light {
     this.camera = camera;
   }
 
-  public void setLightPos(Vec3 vec){
+  public void setSpotlightPos(Vec3 vec){
     position[2] = vec;
   }
 

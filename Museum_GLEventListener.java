@@ -213,8 +213,6 @@ public class Museum_GLEventListener implements GLEventListener {
     spotlight = new Spotlight(metal, lightBulb);
     spotlightRoot = spotlight.getSpotlightRoot();
 
-    light.setLightPos(spotlight.getLightPos().toVec3());
-
     // robot root 
     robot = new Robot(venOrb);
     robotRoot = robot.getRobotRoot();
@@ -224,7 +222,7 @@ public class Museum_GLEventListener implements GLEventListener {
   private void render(GL3 gl) {
     gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
-    light.setLightPos(spotlight.getLightPos().toVec3());
+    light.setSpotlightPos(spotlight.getLightPos().toVec3());
     light.setSpotlightDirection(spotlight.getShadeDirection());
 
     light.render(gl);
