@@ -35,9 +35,9 @@ public class Light {
     spotlight = new Material();
     onSpotlight();
 
-    position[0] = new Vec3(0f,5f,0f);
-    position[1] = new Vec3(3f,5f,-5f);
-    position[2] = new Vec3(0f,0f,0f);
+    position[0] = new Vec3(0f,5f,0f);   // directional light
+    position[1] = new Vec3(3f,5f,-5f);    // point light
+    position[2] = new Vec3(0f,0f,0f);   // spotlight
 
     model = new Mat4(1);
     shader = new Shader(gl, "vs_light_01.txt", "fs_light.txt");
@@ -149,7 +149,7 @@ public class Light {
     gl.glBindVertexArray(vertexArrayId[0]);
 
     for (int i = 0; i < position.length; i++){
-      if (i == 0) continue;
+      if (i == 0 || i == 1) continue;
       Mat4 model = new Mat4(1);
       model = Mat4.multiply(Mat4Transform.scale(0.4f,0.4f,0.4f), model);
       model = Mat4.multiply(Mat4Transform.translate(position[i]), model);

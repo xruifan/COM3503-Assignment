@@ -23,9 +23,9 @@ public class Robot {
   }
 
   private SGNode robotRoot = new NameNode("root");
-  private TransformNode moveTranslate, footRotate, neckRotate, leftEarRotate, rightEarRotate, midEarRotate;
-  private TransformNode robotTranslate, backToOrigin, backToHead, toLeftEarPos, toRightEarPos, toMidEarPos, 
-      bodyTransform, headTransform, neckTransform, footTransform, leftEarTransform, rightEarTransform, midEarTransform;
+  private TransformNode moveTranslate, footRotate, neckRotate, leftEarRotate, rightEarRotate, midEarRotate, robotTranslate, 
+      backToOrigin, backToHead, toLeftEarPos, toRightEarPos, toMidEarPos, bodyTransform, headTransform, neckTransform, 
+      footTransform, leftEarTransform, rightEarTransform, midEarTransform;
   private NameNode body, head, neck, foot, leftEar, rightEar, midEar;
   private ModelNode bodyShape, headShape, neckShape, footShape, leftEarShape, rightEarShape, midEarShape;
 
@@ -170,16 +170,19 @@ public class Robot {
   public SGNode getRobotRoot(){
       setup();
       buildTree();
-      moveTranslate.setTransform(Mat4Transform.translate(-2,0,-7));
+      //moveTranslate.setTransform(Mat4Transform.translate(-2,0,-7));
       robotRoot.update();
       return robotRoot;
   }
 
   // animation
-  private float currentTarX, targetX= -2f;
-  private float currentTarZ, targetZ= -7f;
-  private float currentTarFRX, currentTarFRY, currentTarFRZ, targetFRX, targetFRY, targetFRZ, 
-      currentTarNRX, currentTarNRY, currentTarNRZ, targetNRX, targetNRY, targetNRZ, currentTarLERX, currentTarLERY, currentTarLERZ, targetLERX, 
+  private float currentTarX = -2f;
+  private float targetX = -2f;
+  private float currentTarZ = -7f;
+  private float targetZ = -7f;
+
+  private float currentTarFRX, currentTarFRY, currentTarFRZ, targetFRX, targetFRY, targetFRZ, currentTarNRX, 
+      currentTarNRY, currentTarNRZ, targetNRX, targetNRY, targetNRZ, currentTarLERX, currentTarLERY, currentTarLERZ, targetLERX, 
       targetLERY, targetLERZ, currentTarRERX, currentTarRERY, currentTarRERZ, targetRERX, targetRERY, targetRERZ, currentTarMERX, currentTarMERY, 
       currentTarMERZ, targetMERX, targetMERY, targetMERZ = 0;
 
