@@ -16,16 +16,14 @@ import com.jogamp.opengl.util.glsl.*;
 
 public class SpotlightRoot {
 
-    private static double startTime = getSeconds();
+    private  double startTime = getSeconds();
     
-    private Model metal;
-    private Model lightBulb;
-    private static TransformNode shadeRotateTransform, lightRotateTransform, lightTransform;
-    public static Vec4 lightPos;
-    private static SGNode spotlightRoot = new NameNode("spotlightRoot");
+    private Model metal, lightBulb;
+    private TransformNode shadeRotateTransform, lightRotateTransform, lightTransform;
+    public Vec4 lightPos;
+    private SGNode spotlightRoot = new NameNode("spotlightRoot");
 
-    public static Mat4 lightBulbPosition;
-    public static Vec3 shadeDirection = new Vec3(0,-1,0);
+    public Vec3 shadeDirection = new Vec3(0,-1,0);
 
     public SpotlightRoot(Model metal, Model lightBulb){
         this.metal = metal;
@@ -87,7 +85,7 @@ public class SpotlightRoot {
                 lightTransform.addChild(lightShape);
     }
 
-    public static void updateShadeRotation(){
+    public  void updateShadeRotation(){
         double elapsedTime = getSeconds()-startTime;
         float rotateAngle = 180f+45f*(float)Math.sin(elapsedTime);
         shadeRotateTransform.setTransform(Mat4Transform.rotateAroundX(rotateAngle));
@@ -103,7 +101,15 @@ public class SpotlightRoot {
         return spotlightRoot;
     }
 
-    private static double getSeconds() {
+    public Vec4 getLightPos(){
+        return lightPos;
+    }
+
+    public Vec3 getShadeDirection(){
+        return shadeDirection;
+    }
+
+    private  double getSeconds() {
         return System.currentTimeMillis()/1000.0;
     }
 

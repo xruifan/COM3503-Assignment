@@ -22,8 +22,8 @@ public class RobotRoot {
       this.orb = orb;
   }
 
-  private static SGNode robotRoot = new NameNode("root");
-  private static TransformNode moveTranslate, footRotate, neckRotate, leftEarRotate, rightEarRotate, midEarRotate;
+  private SGNode robotRoot = new NameNode("root");
+  private TransformNode moveTranslate, footRotate, neckRotate, leftEarRotate, rightEarRotate, midEarRotate;
   private TransformNode robotTranslate, backToOrigin, backToHead, toLeftEarPos, toRightEarPos, toMidEarPos, 
       bodyTransform, headTransform, neckTransform, footTransform, leftEarTransform, rightEarTransform, midEarTransform;
   private NameNode body, head, neck, foot, leftEar, rightEar, midEar;
@@ -176,50 +176,50 @@ public class RobotRoot {
   }
 
   // animation
-  private static float currentTarX, targetX= -2f;
-  private static float currentTarZ, targetZ= -7f;
-  private static float currentTarFRX, currentTarFRY, currentTarFRZ, targetFRX, targetFRY, targetFRZ, 
+  private float currentTarX, targetX= -2f;
+  private float currentTarZ, targetZ= -7f;
+  private float currentTarFRX, currentTarFRY, currentTarFRZ, targetFRX, targetFRY, targetFRZ, 
       currentTarNRX, currentTarNRY, currentTarNRZ, targetNRX, targetNRY, targetNRZ, currentTarLERX, currentTarLERY, currentTarLERZ, targetLERX, 
       targetLERY, targetLERZ, currentTarRERX, currentTarRERY, currentTarRERZ, targetRERX, targetRERY, targetRERZ, currentTarMERX, currentTarMERY, 
       currentTarMERZ, targetMERX, targetMERY, targetMERZ = 0;
 
-  private static void setLocation(float x, float z){
+  private void setLocation(float x, float z){
     targetX = x;
     targetZ = z;
   }
 
-  private static void setFR(float fRX, float fRY, float fRZ){
+  private void setFR(float fRX, float fRY, float fRZ){
     targetFRX = fRX;
     targetFRY = fRY;
     targetFRZ = fRZ;
   }
 
-  private static void setNR(float nRX, float nRY, float nRZ){
+  private void setNR(float nRX, float nRY, float nRZ){
     targetNRX = nRX;
     targetNRY = nRY;
     targetNRZ = nRZ;
   }
 
-  private static void setLER(float lERX, float lERY, float lERZ){
+  private void setLER(float lERX, float lERY, float lERZ){
     targetLERX = lERX;
     targetLERY = lERY;
     targetLERZ = lERZ;
   }
 
-  private static void setRER(float rERX, float rERY, float rERZ){
+  private void setRER(float rERX, float rERY, float rERZ){
     targetRERX = rERX;
     targetRERY = rERY;
     targetRERZ = rERZ;
 
   }
 
-  private static void setMER(float mERX, float mERY, float mERZ){
+  private void setMER(float mERX, float mERY, float mERZ){
     targetMERX = mERX;
     targetMERY = mERY;
     targetMERZ = mERZ;
   }
   
-  public static void setRobotPose1(){
+  public void setRobotPose1(){
     setLocation(-2f,-7f);
     setFR(0f,0f,0f);
     setNR(0f,0f,0f);
@@ -228,7 +228,7 @@ public class RobotRoot {
     setMER(0f,0f,0f);
   }
 
-  public static void setRobotPose2(){
+  public void setRobotPose2(){
     setLocation(4f,-4f);
     setFR(-20f,130f,0f);
     setNR(30f,0f,0f);
@@ -238,7 +238,7 @@ public class RobotRoot {
   }
 
 
-  public static void setRobotPose3(){
+  public void setRobotPose3(){
     setLocation(3f,3f);
     setFR(0f,-0f,-20f);
     setNR(0f,0f,-50f);
@@ -247,7 +247,7 @@ public class RobotRoot {
     setMER(10f,0f,0f);
   }
 
-  public static void setRobotPose4(){
+  public void setRobotPose4(){
     setLocation(0f,4f);
     setFR(-10f,180f,0f);
     setNR(0f,0f,10f);
@@ -256,7 +256,7 @@ public class RobotRoot {
     setMER(20f,0f,0f);
   }
 
-  public static void setRobotPose5(){
+  public void setRobotPose5(){
     setLocation(-5f,0f);
     setFR(-10f,270f,0f);
     setNR(-25f,0f,0f);
@@ -265,7 +265,7 @@ public class RobotRoot {
     setMER(-10f,0f,0f);
   }
   
-  private static void updateNextL(){
+  private void updateNextL(){
     float lXMovement = Math.abs(currentTarX - targetX)/30;
     float lZMovement = Math.abs(currentTarZ - targetZ)/30;
     if (currentTarX <= targetX) currentTarX += lXMovement;
@@ -274,7 +274,7 @@ public class RobotRoot {
     if (currentTarZ >= targetZ) currentTarZ -= lZMovement;
   }
 
-  private static void updateNextFR(){
+  private void updateNextFR(){
     float fRXMovement = Math.abs(currentTarFRX - targetFRX)/20;
     float fRYMovement = Math.abs(currentTarFRY - targetFRY)/20;
     float fRZMovement = Math.abs(currentTarFRZ - targetFRZ)/20;
@@ -286,7 +286,7 @@ public class RobotRoot {
     if (currentTarFRZ >= targetFRZ) currentTarFRZ -= fRZMovement;
   }
 
-  private static void updateNextNR(){
+  private void updateNextNR(){
     float nRXMovement = Math.abs(currentTarNRX - targetNRX)/2;
     float nRYMovement = Math.abs(currentTarNRY - targetNRY)/2;
     float nRZMovement = Math.abs(currentTarNRZ - targetNRZ)/2;
@@ -298,7 +298,7 @@ public class RobotRoot {
     if (currentTarNRZ >= targetNRZ) currentTarNRZ -= nRZMovement;
   }
 
-  private static void updateNextLER(){
+  private void updateNextLER(){
     float lERXMovement = Math.abs(currentTarLERX - targetLERX)/2;
     float lERYMovement = Math.abs(currentTarLERY - targetLERY)/2;
     float lERZMovement = Math.abs(currentTarLERZ - targetLERZ)/2;
@@ -310,7 +310,7 @@ public class RobotRoot {
     if (currentTarLERZ >= targetLERZ) currentTarLERZ -= lERZMovement;
   }
 
-  private static void updateNextRER(){
+  private void updateNextRER(){
     float rERXMovement = Math.abs(currentTarRERX - targetRERX)/2;
     float rERYMovement = Math.abs(currentTarRERY - targetRERY)/2;
     float rERZMovement = Math.abs(currentTarRERZ - targetRERZ)/2;
@@ -322,7 +322,7 @@ public class RobotRoot {
     if (currentTarRERZ >= targetRERZ) currentTarRERZ -= rERZMovement;
   }
 
-  private static void updateNextMER(){
+  private void updateNextMER(){
     float mERXMovement = Math.abs(currentTarMERX - targetMERX)/2;
     float mERYMovement = Math.abs(currentTarMERY - targetMERY)/2;
     float mERZMovement = Math.abs(currentTarMERZ - targetMERZ)/2;
@@ -334,7 +334,7 @@ public class RobotRoot {
     if (currentTarMERZ >= targetMERZ) currentTarMERZ -= mERZMovement;
   }
 
-  public static void doRobotTargetPose(){
+  public void doRobotTargetPose(){
     updateNextL();
     updateNextFR();
     updateNextNR();

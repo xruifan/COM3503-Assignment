@@ -86,7 +86,7 @@ public class Model {
     shader.setFloat(gl, "spotLight.constant", 1.0f);
     shader.setFloat(gl, "spotLight.linear", 0.09f);
     shader.setFloat(gl, "spotLight.quadratic", 0.032f);
-    shader.setVec3(gl, "spotLight.direction", SpotlightRoot.shadeDirection);
+    shader.setVec3(gl, "spotLight.direction", light.getSpotlightDirection());
     shader.setFloat(gl, "spotLight.cutOff", (float)Math.cos(Math.toRadians(12.5)));
     shader.setFloat(gl, "spotLight.outerCutOff", (float)Math.cos(Math.toRadians(15)));
     

@@ -93,19 +93,19 @@ public class Museum extends JFrame implements ActionListener {
   
   public void actionPerformed(ActionEvent e) {
     if (e.getActionCommand().equalsIgnoreCase("Pose 1")) {
-      RobotRoot.setRobotPose1();
+      glEventListener.robot.setRobotPose1();
     }
     else if (e.getActionCommand().equalsIgnoreCase("Pose 2")) {
-      RobotRoot.setRobotPose2();
+      glEventListener.robot.setRobotPose2();
     }
     else if (e.getActionCommand().equalsIgnoreCase("Pose 3")) {
-      RobotRoot.setRobotPose3();
+      glEventListener.robot.setRobotPose3();
     }
     else if (e.getActionCommand().equalsIgnoreCase("Pose 4")) {
-      RobotRoot.setRobotPose4();
+      glEventListener.robot.setRobotPose4();
     }
     else if (e.getActionCommand().equalsIgnoreCase("Pose 5")) {
-      RobotRoot.setRobotPose5();
+      glEventListener.robot.setRobotPose5();
     }
     else if (e.getActionCommand().equalsIgnoreCase("Directional light switch")) {
       glEventListener.dirLightSwitch();

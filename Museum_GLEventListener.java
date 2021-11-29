@@ -132,6 +132,8 @@ public class Museum_GLEventListener implements GLEventListener {
   private Model floor, sceneDay, sceneNight, plinth, orb, metal, phoneScreen, lightBulb, venOrb;
   private List<Model> windowWall = new ArrayList<>();
   private List<Model> doorWall = new ArrayList<>();
+  public RobotRoot robot;
+  public SpotlightRoot spotlight;
   private Light light;
   private SGNode phoneRoot, eggRoot, spotlightRoot, robotRoot;
 
@@ -208,16 +210,23 @@ public class Museum_GLEventListener implements GLEventListener {
     phoneRoot = new PhoneRoot(plinth, metal, phoneScreen).getPhoneRoot();
 
     // spot light root
-    spotlightRoot = new SpotlightRoot(metal, lightBulb).getSpotlightRoot();
+    spotlight = new SpotlightRoot(metal, lightBulb);
+    spotlightRoot = spotlight.getSpotlightRoot();
+
+    light.setLightPos(spotlight.getLightPos().toVec3());
 
     // robot root 
-    robotRoot = new RobotRoot(venOrb).getRobotRoot();
+    robot = new RobotRoot(venOrb);
+    robotRoot = robot.getRobotRoot();
 
   }
- 
+
   private void render(GL3 gl) {
     gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
-    
+
+    light.setLightPos(spotlight.getLightPos().toVec3());
+    light.setSpotlightDirection(spotlight.getShadeDirection());
+
     light.render(gl);
     floor.render(gl);
     for (Model wallPiece : windowWall){
@@ -229,9 +238,9 @@ public class Museum_GLEventListener implements GLEventListener {
     sceneRender(gl);
     eggRoot.draw(gl);
     phoneRoot.draw(gl);
-    SpotlightRoot.updateShadeRotation();
+    spotlight.updateShadeRotation();
     spotlightRoot.draw(gl);
-    RobotRoot.doRobotTargetPose();
+    robot.doRobotTargetPose();
     robotRoot.draw(gl);
   }
 

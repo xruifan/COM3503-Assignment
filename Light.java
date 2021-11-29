@@ -14,6 +14,7 @@ public class Light {
 
   // new code
   private Material material, dirLight, pointLight, spotlight;
+  private Vec3 spotlightDirection;
   private Vec3[] position = new Vec3[3];
   private Mat4 model;
   private Shader shader;
@@ -130,12 +131,22 @@ public class Light {
   public void setCamera(Camera camera) {
     this.camera = camera;
   }
+
+  public void setLightPos(Vec3 vec){
+    position[2] = vec;
+  }
+
+  public void setSpotlightDirection(Vec3 vec){
+    spotlightDirection = vec;
+  }
+
+  public Vec3 getSpotlightDirection(){
+    return spotlightDirection;
+  }
   
   public void render(GL3 gl) {
 
     gl.glBindVertexArray(vertexArrayId[0]);
-    position[2] = SpotlightRoot.lightPos.toVec3();
-    //position[2] = new Vec3(5,7,5);
 
     for (int i = 0; i < position.length; i++){
       if (i == 0) continue;
