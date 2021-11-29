@@ -93,8 +93,7 @@ public class SpotlightRoot {
         shadeRotateTransform.setTransform(Mat4Transform.rotateAroundX(rotateAngle));
         spotlightRoot.update();
         lightPos = Mat4.multiply(lightTransform.worldTransform, new Vec4(0f,0.5f,0f,1.0f));
-        shadeDirection = Vec3Transform.rotateAroundX(new Vec3(0,-1,0), rotateAngle);
-        
+        shadeDirection = Mat4.multiply(Mat4Transform.rotateAroundX(rotateAngle), new Vec4(0,1,0,0)).toVec3();
     }
 
     public SGNode getSpotlightRoot(){
