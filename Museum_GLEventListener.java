@@ -143,7 +143,8 @@ public class Museum_GLEventListener implements GLEventListener {
     int[] textureFloor = TextureLibrary.loadTexture(gl, "textures/floor.jpg");
     int[] textureFloorSpecular = TextureLibrary.loadTexture(gl, "textures/floor_specular.jpg");
     int[] textureWall = TextureLibrary.loadTexture(gl, "textures/wall.jpg");
-    int[] textureSky = TextureLibrary.loadTexture(gl, "textures/garden.jpg");
+    int[] textureWallSpecular = TextureLibrary.loadTexture(gl, "textures/wall_specular.jpg");
+    int[] textureSky = TextureLibrary.loadTexture(gl, "textures/sky.jpg");
     int[] textureNight = TextureLibrary.loadTexture(gl, "textures/night_sky.jpg");
     int[] texturePlinth = TextureLibrary.loadTexture(gl, "textures/container2.jpg");
     int[] texturePlinthSpecular = TextureLibrary.loadTexture(gl, "textures/container2_specular.jpg");
@@ -166,10 +167,10 @@ public class Museum_GLEventListener implements GLEventListener {
 
     // window wall
     shader = new Shader(gl, "vs_tt_05.txt", "fs.txt");
-    windowWall = new Wall(gl, camera, light, shader, mesh, textureWall).getWindowWall();
+    windowWall = new Wall(gl, camera, light, shader, mesh, textureWall, textureWallSpecular).getWindowWall();
 
     // door wall
-    doorWall = new Wall(gl, camera, light, shader, mesh, textureWall).getDoorWall();
+    doorWall = new Wall(gl, camera, light, shader, mesh, textureWall, textureWallSpecular).getDoorWall();
       
     // scene
     sceneDay = new Scene(gl, camera, light, shader, mesh, textureSky).getScene();

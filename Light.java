@@ -45,9 +45,9 @@ public class Light {
   }
 
   public void onDirLight(){
-      dirLight.setAmbient(0.6f, 0.6f, 0.6f);
+      dirLight.setAmbient(0.4f, 0.4f, 0.4f);
       dirLight.setDiffuse(0.6f, 0.6f, 0.6f);
-      dirLight.setSpecular(1.0f, 1.0f, 1.0f);
+      dirLight.setSpecular(0.5f, 0.5f, 0.5f);
   }
 
   public void offDirLight(){

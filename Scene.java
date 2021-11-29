@@ -23,7 +23,7 @@ public class Scene {
     private Mesh mesh;
     private int[] texture;
 
-    Material material = new Material(new Vec3(0.7f, 0.7f, 0.7f), new Vec3(0.7f, 0.7f, 0.7f), new Vec3(0.0f, 0.0f, 0.0f), 16.0f);
+    Material material = new Material(new Vec3(1.0f,1.0f,1.0f), new Vec3(1.0f,1.0f,1.0f), new Vec3(1.0f,1.0f,1.0f), 16.0f);
     float size = 16f;
     Mat4 modelMatrix = Mat4Transform.scale(size*3,1f,size*3);
 
