@@ -19,6 +19,9 @@ public class Phone {
     private Model plinth;
     private Model metal;
     private Model phoneScreen;
+    private TransformNode phoneTranslate, plinthTransform, phoneCaseTransform, phoneScreenTransform;
+    private NameNode plinthNode, phoneCaseNode, phoneScreenNode;
+    private ModelNode plinthShape, phoneCaseShape, phoneScreenShape;
 
     public Phone(Model plinth, Model metal, Model phoneScreen){
         this.plinth = plinth;
@@ -29,27 +32,30 @@ public class Phone {
 
     private SGNode phoneRoot = new NameNode("phoneRoot");
 
-    private void setupTree(){
-        TransformNode phoneTranslate = new TransformNode("phone transform",Mat4Transform.translate(6,0,-6));
+    private void setup(){
+        phoneTranslate = new TransformNode("phone transform",Mat4Transform.translate(6,0,-6));
 
-        NameNode plinthNode = new NameNode("plinth");
+        plinthNode = new NameNode("plinth");
         Mat4 m = Mat4Transform.scale(1.5f,0.75f,1.5f);
         m = Mat4.multiply(m, Mat4Transform.translate(0.0f,0.5f,0.0f));
-        TransformNode plinthTransform = new TransformNode("plinth transform", m);
-            ModelNode plinthShape = new ModelNode("Cube(plinth)", plinth);
+        plinthTransform = new TransformNode("plinth transform", m);
+            plinthShape = new ModelNode("Cube(plinth)", plinth);
 
-        NameNode phoneCaseNode = new NameNode("phoneCase");
+        phoneCaseNode = new NameNode("phoneCase");
         m = Mat4Transform.scale(1.15f,2.55f,0.3f);
         m = Mat4.multiply(m, Mat4Transform.translate(0,0.6f,0));
-        TransformNode phoneCaseTransform = new TransformNode("phoneCase transform", m);
-            ModelNode phoneCaseShape = new ModelNode("Cube(phoneCase)", metal);
+        phoneCaseTransform = new TransformNode("phoneCase transform", m);
+            phoneCaseShape = new ModelNode("Cube(phoneCase)", metal);
 
-        NameNode phoneScreenNode = new NameNode("phoneScreen");
+        phoneScreenNode = new NameNode("phoneScreen");
         m = Mat4Transform.scale(0.9f,1.65f,0.3f);
         m = Mat4.multiply(m, Mat4Transform.translate(0,1.1f,0.02f));
-        TransformNode phoneScreenTransform = new TransformNode("phoneScreen transform", m);
-            ModelNode phoneScreenShape = new ModelNode("Cube(phoneScreen)", phoneScreen);
+        phoneScreenTransform = new TransformNode("phoneScreen transform", m);
+            phoneScreenShape = new ModelNode("Cube(phoneScreen)", phoneScreen);
 
+    }
+
+    private void buildTree(){
         phoneRoot.addChild(phoneTranslate);
         phoneTranslate.addChild(plinthNode);
             plinthNode.addChild(plinthTransform);
@@ -63,7 +69,8 @@ public class Phone {
     }
 
     public SGNode getPhoneRoot(){
-        setupTree();
+        setup();
+        buildTree();
         phoneRoot.update();
         return phoneRoot;
     }

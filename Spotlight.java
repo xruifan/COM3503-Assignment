@@ -19,7 +19,10 @@ public class Spotlight {
     private  double startTime = getSeconds();
     
     private Model metal, lightBulb;
-    private TransformNode shadeRotateTransform, lightRotateTransform, lightTransform;
+    private TransformNode shadeRotateTransform, lightRotateTransform, lightTransform, spotlightTranslate, baseTransform, lowerPostTransform, 
+            upperPostTransform, shadeTransform;
+    private NameNode baseNode, lowerPostNode, upperPostNode, shadeNode, lightNode;
+    private ModelNode baseShape, lowerPostShape, upperPostShape, shadeShape, lightShape;
     public Vec4 lightPos;
     private SGNode spotlightRoot = new NameNode("spotlightRoot");
 
@@ -30,42 +33,45 @@ public class Spotlight {
         this.lightBulb = lightBulb;
     }
 
-    private void setupTree(){
-        TransformNode spotlightTranslate = new TransformNode("spotlight transform",Mat4Transform.translate(7.5f,0.0f,3.0f));
+    private void setup(){
+        spotlightTranslate = new TransformNode("spotlight transform",Mat4Transform.translate(7.5f,0.0f,3.0f));
 
-        NameNode baseNode = new NameNode("spotlightBase");
+        baseNode = new NameNode("spotlightBase");
         Mat4 m = Mat4Transform.scale(0.5f,0.25f,0.5f);
         m = Mat4.multiply(m, Mat4Transform.translate(0.0f,0.0f,0.0f));
-        TransformNode baseTransform = new TransformNode("base transform", m);
-            ModelNode baseShape = new ModelNode("Cube(Spotlight Base)", metal);
+        baseTransform = new TransformNode("base transform", m);
+            baseShape = new ModelNode("Cube(Spotlight Base)", metal);
 
-        NameNode lowerPostNode = new NameNode("spotlight lower post");
+        lowerPostNode = new NameNode("spotlight lower post");
         m = Mat4Transform.scale(0.25f,5.0f,0.25f);
         m = Mat4.multiply(m, Mat4Transform.translate(0.0f,0.5f,0.0f));
-        TransformNode lowerPostTransform = new TransformNode("lower post transform", m);
-            ModelNode lowerPostShape = new ModelNode("Cube(Spotlight lower post)", metal);
+        lowerPostTransform = new TransformNode("lower post transform", m);
+            lowerPostShape = new ModelNode("Cube(Spotlight lower post)", metal);
 
-        NameNode upperPostNode = new NameNode("spotlight upper post");
+        upperPostNode = new NameNode("spotlight upper post");
         m = Mat4Transform.scale(1.0f,0.25f,0.25f);
         m = Mat4.multiply(m, Mat4Transform.translate(-0.4f,20.0f,0.0f));
-        TransformNode upperPostTransform = new TransformNode("upper post transform", m);
-            ModelNode upperPostShape = new ModelNode("Cube(Spotlight upper post)", metal);    
+        upperPostTransform = new TransformNode("upper post transform", m);
+            upperPostShape = new ModelNode("Cube(Spotlight upper post)", metal);    
 
-        NameNode shadeNode = new NameNode("spotlight shade");
+        shadeNode = new NameNode("spotlight shade");
         m = Mat4Transform.scale(0.5f,0.7f,0.5f);
         m = Mat4.multiply(m, Mat4Transform.translate(-2.0f,7.0f,0.0f));
-        TransformNode shadeTransform = new TransformNode("shade transform", m);
-            ModelNode shadeShape = new ModelNode("Cube(Spotlight shade)", metal);  
+        shadeTransform = new TransformNode("shade transform", m);
+            shadeShape = new ModelNode("Cube(Spotlight shade)", metal);  
 
         shadeRotateTransform = new TransformNode("shade transform", m);
         lightRotateTransform = shadeRotateTransform;
 
-        NameNode lightNode = new NameNode("spotlight light");
+        lightNode = new NameNode("spotlight light");
         m = Mat4Transform.scale(0.5f,0.5f,0.5f);
         m = Mat4.multiply(m, Mat4Transform.translate(0.0f,1.0f,0.0f));
         lightTransform = new TransformNode("light transform", m);
-            ModelNode lightShape = new ModelNode("Sphere(Spotlight light)", lightBulb);  
+            lightShape = new ModelNode("Sphere(Spotlight light)", lightBulb);  
 
+    }
+
+    private void buildTree(){
         spotlightRoot.addChild(spotlightTranslate);
         spotlightTranslate.addChild(baseNode);
         baseNode.addChild(baseTransform);
@@ -95,7 +101,8 @@ public class Spotlight {
     }
 
     public SGNode getSpotlightRoot(){
-        setupTree();
+        setup();
+        buildTree();
         spotlightRoot.update();
         lightPos = new Vec4(0,0,0,0);
         return spotlightRoot;

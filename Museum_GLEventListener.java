@@ -78,7 +78,6 @@ public class Museum_GLEventListener implements GLEventListener {
     phoneScreen.dispose(gl);
   }
 
-    
   // ***************************************************
   /* INTERACTION
    *
@@ -120,7 +119,6 @@ public class Museum_GLEventListener implements GLEventListener {
     }
   }
    
-   
   // ***************************************************
   /* THE SCENE
    * Now define all the methods to handle the scene.
@@ -160,18 +158,18 @@ public class Museum_GLEventListener implements GLEventListener {
     
     // floor
     Mesh mesh = new Mesh(gl, TwoTriangles.vertices.clone(), TwoTriangles.indices.clone());
-    Shader shader = new Shader(gl, "vs_tt.txt", "fs_2.txt");
+    Shader shader = new Shader(gl, "vs.txt", "fs_2.txt");
 
     floor = new Floor(gl, camera, light, shader, mesh, textureFloor, textureFloorSpecular).getFloor();
 
     // window wall
-    shader = new Shader(gl, "vs_tt.txt", "fs.txt");
     windowWall = new Wall(gl, camera, light, shader, mesh, textureWall, textureWallSpecular).getWindowWall();
 
     // door wall
     doorWall = new Wall(gl, camera, light, shader, mesh, textureWall, textureWallSpecular).getDoorWall();
       
     // scene
+    shader = new Shader(gl, "vs_tt.txt", "fs.txt");
     sceneDay = new Scene(gl, camera, light, shader, mesh, textureSky).getScene();
     sceneNight = new Scene(gl, camera, light, shader, mesh, textureNight).getScene();
 
@@ -183,7 +181,6 @@ public class Museum_GLEventListener implements GLEventListener {
 
     // orb
     mesh = new Mesh(gl, Sphere.vertices.clone(), Sphere.indices.clone());
-    shader = new Shader(gl, "vs.txt", "fs_2.txt");
 
     orb = new Orb(gl, camera, light, shader, mesh, textureEgg, textureEggSpecular).getOrb();
     venOrb = new Orb(gl, camera, light, shader, mesh, textureVen, textureVenSpecular).getOrb();
@@ -199,7 +196,6 @@ public class Museum_GLEventListener implements GLEventListener {
 
     // phone case (metal)
     mesh = new Mesh(gl, Cube.vertices.clone(), Cube.indices.clone());
-    shader = new Shader(gl, "vs.txt", "fs.txt");
 
     metal = new Metal(gl, camera, light, shader, mesh, textureMetal).getMetal();
 
@@ -243,7 +239,6 @@ public class Museum_GLEventListener implements GLEventListener {
     robotRoot.draw(gl);
   }
 
-
   // The scene's texture changes by time 
   private void sceneRender(GL3 gl){
     double elapsedTime = getSeconds()-startTime;
@@ -254,7 +249,6 @@ public class Museum_GLEventListener implements GLEventListener {
     }
   }
 
-   
   // ***************************************************
   /* TIME
    */ 
