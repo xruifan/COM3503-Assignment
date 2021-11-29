@@ -40,7 +40,7 @@ public class Light {
     position[2] = new Vec3(0f,0f,0f);   // spotlight
 
     model = new Mat4(1);
-    shader = new Shader(gl, "vs_light_01.txt", "fs_light.txt");
+    shader = new Shader(gl, "vs_light.txt", "fs_light.txt");
     fillBuffers(gl);
   }
 

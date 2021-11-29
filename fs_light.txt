@@ -1,5 +1,6 @@
 #version 330 core
 
+// code from exercise sheets
 out vec4 fragColor;
 
 void main() {

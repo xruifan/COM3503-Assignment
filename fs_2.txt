@@ -1,5 +1,6 @@
 #version 330 core
 
+// code from exercise sheets
 in vec3 aPos;
 in vec3 aNormal;
 in vec2 aTexCoord;

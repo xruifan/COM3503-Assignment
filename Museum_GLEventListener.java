@@ -160,12 +160,12 @@ public class Museum_GLEventListener implements GLEventListener {
     
     // floor
     Mesh mesh = new Mesh(gl, TwoTriangles.vertices.clone(), TwoTriangles.indices.clone());
-    Shader shader = new Shader(gl, "vs_tt_05.txt", "fs_2.txt");
+    Shader shader = new Shader(gl, "vs_tt.txt", "fs_2.txt");
 
     floor = new Floor(gl, camera, light, shader, mesh, textureFloor, textureFloorSpecular).getFloor();
 
     // window wall
-    shader = new Shader(gl, "vs_tt_05.txt", "fs.txt");
+    shader = new Shader(gl, "vs_tt.txt", "fs.txt");
     windowWall = new Wall(gl, camera, light, shader, mesh, textureWall, textureWallSpecular).getWindowWall();
 
     // door wall
@@ -177,20 +177,20 @@ public class Museum_GLEventListener implements GLEventListener {
 
     // plinth
     mesh = new Mesh(gl, Cube.vertices.clone(), Cube.indices.clone());
-    shader = new Shader(gl, "vs_cube_04.txt", "fs_2.txt");
+    shader = new Shader(gl, "vs.txt", "fs_2.txt");
 
     plinth = new Plinth(gl, camera, light, shader, mesh, texturePlinth, texturePlinthSpecular).getPlinth();
 
     // orb
     mesh = new Mesh(gl, Sphere.vertices.clone(), Sphere.indices.clone());
-    shader = new Shader(gl, "vs_sphere_04.txt", "fs_2.txt");
+    shader = new Shader(gl, "vs.txt", "fs_2.txt");
 
     orb = new Orb(gl, camera, light, shader, mesh, textureEgg, textureEggSpecular).getOrb();
     venOrb = new Orb(gl, camera, light, shader, mesh, textureVen, textureVenSpecular).getOrb();
 
     // lightBulb
     mesh = new Mesh(gl, Sphere.vertices.clone(), Sphere.indices.clone());
-    shader = new Shader(gl, "vs_light_01.txt", "fs_light.txt");
+    shader = new Shader(gl, "vs_light.txt", "fs_light.txt");
 
     lightBulb = new LightBulb(gl, camera, light, shader, mesh).getLightBulb();
 
@@ -199,7 +199,7 @@ public class Museum_GLEventListener implements GLEventListener {
 
     // phone case (metal)
     mesh = new Mesh(gl, Cube.vertices.clone(), Cube.indices.clone());
-    shader = new Shader(gl, "vs_cube_04.txt", "fs.txt");
+    shader = new Shader(gl, "vs.txt", "fs.txt");
 
     metal = new Metal(gl, camera, light, shader, mesh, textureMetal).getMetal();
 
