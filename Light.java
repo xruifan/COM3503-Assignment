@@ -26,7 +26,7 @@ public class Light {
     spotlight = new Material();
     onSpotlight();
 
-    position[0] = new Vec3(0f,15f,0f);
+    position[0] = new Vec3(0f,5f,0f);
     position[1] = new Vec3(-7f,5f,-7f);
     position[2] = new Vec3(0f,0f,0f);
 
