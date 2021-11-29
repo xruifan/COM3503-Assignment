@@ -190,7 +190,7 @@ public class Museum_GLEventListener implements GLEventListener {
 
     // lightBulb
     mesh = new Mesh(gl, Sphere.vertices.clone(), Sphere.indices.clone());
-    shader = new Shader(gl, "vs_light.txt", "fs_light.txt");
+    shader = new Shader(gl, "vs.txt", "fs.txt");
 
     lightBulb = new LightBulb(gl, camera, light, shader, mesh).getLightBulb();
 

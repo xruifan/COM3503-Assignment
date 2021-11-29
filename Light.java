@@ -149,7 +149,7 @@ public class Light {
     gl.glBindVertexArray(vertexArrayId[0]);
 
     for (int i = 0; i < position.length; i++){
-      if (i == 0 || i == 1) continue;
+      if (i == 0 || i == 1 || i ==2) continue;
       Mat4 model = new Mat4(1);
       model = Mat4.multiply(Mat4Transform.scale(0.4f,0.4f,0.4f), model);
       model = Mat4.multiply(Mat4Transform.translate(position[i]), model);
